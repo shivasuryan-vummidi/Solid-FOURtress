@@ -1,0 +1,19 @@
+Team Solid FOURtress - Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi
+APCS1 pd3
+HW57 -- ...and Keeping It Pointed Up
+2017-01-10
+
+============================================================
+WHAT WE MUST DO
+1. create interface ConnectFour with methods create_board() and check_winner()
+2. create driver class Woo
+3. modify driver class to implement create_board()
+4. create abstract superclass Player with methods drop_token() and is_win()
+5. create subclass User that has implementations of drop_token() and is_win()
+6. modify driver class Woo to create instances of User.
+7. modify driver class Woo to call on each instance of drop_token() and is_win()
+8. modify driver class Woo to import java.util.* and java.io.* to then create an InputStreamReader and a BufferedReader.
+============================================================
+//NEW IDEAS - AI
+9. create subclass Computer that has implementations of drop_token() and is_win()
+10. modify subclass Computer to have a new method random_column() which serves as the AI for the class
