@@ -22,7 +22,7 @@ public class User extends Player{
 	  System.out.println("ERROR: Please try again. Column " + column + " is full.");
 	}
 	else{
-	w.drop(column, token_name);
+	    w.drop(column, this);
 	}
     }
     public int pick_column() {

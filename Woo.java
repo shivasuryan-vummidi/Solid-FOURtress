@@ -38,14 +38,16 @@ public class Woo {
 	_board[row][column] = x;
     }
     
-    public void drop(int column, char token_name){
+    public void drop(int column, Player p){
 	int row = 0;
 	for (int x = 0; x < _board[column].length; x++) {
 	    if (_board[x][column] == '_') {
 		row = x;
 	    }
 	}
-	set(row,column,token_name);
+	p._lastRow = row;
+	p._lastColumn = column;
+	set(row,column,p.token_name);
     }
 
     public String printBoard(){
@@ -95,6 +97,8 @@ public class Woo {
 	for(int x = 0; x < 9; x++){
 	    player1.drop_token(col1,this);
 	}
+	System.out.println(player1._lastRow);
+	System.out.println(player1._lastColumn);
 	System.out.println(printBoard());
     }
     public static void main(String[] args){
