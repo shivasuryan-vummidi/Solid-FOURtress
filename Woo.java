@@ -41,7 +41,7 @@ public class Woo {
     public void drop(int column, char token_name){
 	int row = 0;
 	for (int x = 0; x < _board[column].length; x++) {
-	    if (_board[column][x] == '_') {
+	    if (_board[x][column] == '_') {
 		row = x;
 	    }
 	}
@@ -49,7 +49,7 @@ public class Woo {
     }
 
     public String printBoard(){
-	String s = "□=╦=╦=╦=╦=╦=╦=╦=□\n";
+	String s = "╔═╦═╦═╦═╦═╦═╦═╦═╗\n";
 	for (int x = 0; x < _board[0].length;x++) {
 	    s += "║";
 	    for (int y = 0; y < _board.length;y++) {
@@ -70,7 +70,7 @@ public class Woo {
 		s += "\n╠-╬-╬-╬-╬-╬-╬-╬-╣\n";
 	    }
 	    else {
-		s += "\n□=╩=╩=╩=╩=╩=╩=╩=□\n"; 
+		s += "\n╚═╩═╩═╩═╩═╩═╩═╩═╝\n"; 
 	    }
 	}
 	return s;
@@ -92,7 +92,9 @@ public class Woo {
 	catch(IOException e){ }
 	User player1 = new User(name1, char1);
 	int col1 = player1.pick_column();
-	player1.drop_token(col1,this);
+	for(int x = 0; x < 9; x++){
+	    player1.drop_token(col1,this);
+	}
 	System.out.println(printBoard());
     }
     public static void main(String[] args){
