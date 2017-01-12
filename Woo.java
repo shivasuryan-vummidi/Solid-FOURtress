@@ -51,7 +51,11 @@ public class Woo {
     }
 
     public String printBoard(){
-	String s = "╔═╦═╦═╦═╦═╦═╦═╦═╗\n";
+	String s = "╔";
+	for (int z = 0; z < _board[0].length-1;z++) {
+	    s += "═╦";
+	}
+	s += "═╗\n";
 	for (int x = 0; x < _board[0].length;x++) {
 	    s += "║";
 	    for (int y = 0; y < _board.length;y++) {
@@ -69,7 +73,11 @@ public class Woo {
 		}
 	    }
 	    if (x < _board[0].length-1) {
-		s += "\n╠-╬-╬-╬-╬-╬-╬-╬-╣\n";
+		s += "\n╠";
+		for (int w = 0; w < _board[0].length-1;w++) {
+		    s += "═╬";
+		}
+		s += "═╣\n";
 	    }
 	    else {
 		s += "\n╚═╩═╩═╩═╩═╩═╩═╩═╝\n"; 

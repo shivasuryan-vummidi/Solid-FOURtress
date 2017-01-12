@@ -34,8 +34,19 @@ public class User extends Player{
 	catch(IOException e){ }
     	return column;
     }
-    public void is_win(){
-	
+    public boolean is_win(){
+	return true;
     }
     
+    public String getLastRowString() {
+	return "a";
+    }
+
+    public String getLastColumnString() {
+	return "a";
+    }
+
+    public String getLastDiagonalString() {
+	return "a";
+    }
 }
