@@ -89,6 +89,13 @@ Worked on todo.txt
 --------------------------------------------------------------
 Edwin Mok :: Added constructor to Driver. 
 Adeebur Rahman :: Worked on devlog.txt & see collaborative work
+	       	  Made print method better.
+		  Made drop work.
+		  Added pick_column.
+		  Added set for more readability.
+		  Made drop_token work.
+		  Driver Class NOW RUNS 1 "loop" of the game.
+
 Shivasuryan Vummidi :: Pushed and worked on collaborative work.
 
 Collaboratively
@@ -100,7 +107,7 @@ Changed _board instance variable to a 2D array of chars.
 Added InputStreamReader and BufferedReader to Driver.
 Defined is_column_full in driver class.
 Started definition of drop method.
-Wrote a basic to string method.
+Wrote a basic print method for _board.
 Wrote some basic test code in the main method.
 ==============================================================
 

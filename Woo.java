@@ -10,6 +10,11 @@ public class Woo {
 
     public void create_board() {
 	_board = new char[8][8];
+	for (int x = 0; x < _board[0].length;x++) {
+	    for (int y = 0; y < _board.length;y++) {
+		_board[x][y] = '_';
+	    }
+	}
     }
 
     public void check_winner(){
@@ -26,44 +31,71 @@ public class Woo {
     }
 
     public boolean is_column_full(int column){
-        return(_board[column][0] != ' ');
+        return(_board[0][column] != '_');
+    }
+
+    public void set(int row, int column, char x) {
+	_board[row][column] = x;
     }
     
     public void drop(int column, char token_name){
-	for(int x = 7; x > 0; x--){
-	    if(_board[column][x] == ' '){
-		_board[column][x] = token_name;
-		return;
+	int row = 0;
+	for (int x = 0; x < _board[column].length; x++) {
+	    if (_board[column][x] == '_') {
+		row = x;
 	    }
 	}
+	set(row,column,token_name);
     }
+
     public String printBoard(){
-	String s = "|";
-	for(int y = 0; y < 8; y++){
-	    for(int x = 0; x < 8; x++){
-		s += _board[y][x] + "|";
+	String s = "□=╦=╦=╦=╦=╦=╦=╦=□\n";
+	for (int x = 0; x < _board[0].length;x++) {
+	    s += "║";
+	    for (int y = 0; y < _board.length;y++) {
+    		s += _board[x][y];
+		if (y < _board.length-1) {
+		    s += "║";
+		}
+		else {
+		    if (y % 2 == 0) {
+			s += "╣";
+		    }
+		    else {
+			s += "║";
+		    }
+		}
 	    }
-	    s+= "\n-----------------\n|";
+	    if (x < _board[0].length-1) {
+		s += "\n╠-╬-╬-╬-╬-╬-╬-╬-╣\n";
+	    }
+	    else {
+		s += "\n□=╩=╩=╩=╩=╩=╩=╩=□\n"; 
+	    }
 	}
-	s = s.substring(0, s.length() - 1);
 	return s;
     }
 
     public void newGame(){
-	System.out.println("Hello, player! Please enter your name.     ");
+	System.out.println("Hello, player! ");
+	String name1 = "player1";
+	char char1 = '&';
 	try{
-	    String name1 = in.readLine();
+	    System.out.println("Please enter your name.");
+	    name1 = in.readLine();
+	}
+	catch(IOException e){ }
+	try {
 	    System.out.println("Please enter what character you want to use in the game.     ");
-	    char char1 = in.readLine().charAt(0);
-	    User player1 = new User(name1, char1);
-	    System.out.println("Please enter what column you want to drop your token.");
-	    int col1 = Integer.parseInt(in.readLine());
-	    player1.drop_token(col1);
-	}catch(IOException e){}
-	printBoard();
+	    char1 = in.readLine().charAt(0);
+	}
+	catch(IOException e){ }
+	User player1 = new User(name1, char1);
+	int col1 = player1.pick_column();
+	player1.drop_token(col1,this);
+	System.out.println(printBoard());
     }
     public static void main(String[] args){
 	Woo a = new Woo();
-	
     }
 }
