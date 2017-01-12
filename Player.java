@@ -1,11 +1,11 @@
 public abstract class Player {
 
-    protected tokens;
-    protected name;
-    protected token_name;
+    protected int tokens;
+    protected String name;
+    protected char token_name;
 
-    void drop_token();
+    abstract void drop_token(int column);
 
-    void is_win();
+    abstract void is_win();
 
 }

@@ -15,4 +15,7 @@ public class User extends Player{
 	    Woo.drop(column, token_name);
 	}
     }
+    public void is_win(){
+
+    }
 }

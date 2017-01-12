@@ -22,6 +22,7 @@ public class Woo {
 	gameOver = false;
 	isr = new InputStreamReader( System.in );
 	in = new BufferedReader( isr );
+	newGame();
     }
 
     public boolean is_column_full(int column){
@@ -37,18 +38,32 @@ public class Woo {
 	}
     }
     public String printBoard(){
-	String s = "";
-	for(int y = 0; y < 7; y++){
-	    for(int x = 0; x < 7; x++){
-		s += _board[y][x] + " ";
+	String s = "|";
+	for(int y = 0; y < 8; y++){
+	    for(int x = 0; x < 8; x++){
+		s += _board[y][x] + "|";
 	    }
-	    s+= "\n";
+	    s+= "\n-----------------\n|";
 	}
+	s = s.substring(0, s.length() - 1);
 	return s;
+    }
+
+    public void newGame(){
+	System.out.println("Hello, player! Please enter your name.     ");
+	try{
+	    String name1 = in.readLine();
+	    System.out.println("Please enter what character you want to use in the game.     ");
+	    char char1 = in.readLine().charAt(0);
+	    User player1 = new User(name1, char1);
+	    System.out.println("Please enter what column you want to drop your token.");
+	    int col1 = Integer.parseInt(in.readLine());
+	    player1.drop_token(col1);
+	}catch(IOException e){}
+	printBoard();
     }
     public static void main(String[] args){
 	Woo a = new Woo();
-	System.out.println( a.printBoard());
 	
     }
 }
