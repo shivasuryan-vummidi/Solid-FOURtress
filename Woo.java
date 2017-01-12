@@ -19,11 +19,11 @@ public class Woo {
 
     public void check_winner(Player p){
 	if(p.is_win(this)){
-	    System.out.println("Player " + p + " has NOT NOT won!");
+	    System.out.println("Player " + p + " has won!");
 	    gameOver = true;
 	}
 	else{
-	    System.out.println("Player " + p + " has NOT won!");
+	    System.out.println("Nobody has yet to win, continue playing.");
 	}
     }
 
@@ -107,14 +107,15 @@ public class Woo {
 	}
 	catch(IOException e){ }
 	User player1 = new User(name1, char1);
-	int col1 = player1.pick_column();
-	for(int x = 0; x < 9; x++){
-	    player1.drop_token(col1,this);
+	int col = -1;
+	while (!gameOver) {
+	    col = player1.pick_column(this);
+	    player1.drop_token(col,this);
+	    System.out.println(printBoard());
+	    System.out.println("Last row #: " + player1._lastRow);
+	    System.out.println("Last column #: " + player1._lastColumn);
+	    check_winner(player1);
 	}
-	System.out.println(player1._lastRow);
-	System.out.println(player1._lastColumn);
-	System.out.println(printBoard());
-	check_winner(player1);
     }
     public static void main(String[] args){
 	Woo a = new Woo();

@@ -7,26 +7,12 @@ pd 3
 Connect Four
 
 
-Suggested usage: 
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc we figured out how to get diagonals.
+
 wow we so BOSS bc...
 
 UNRESOLVED ISSUES
@@ -40,6 +26,10 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+we changed the board from a 2D string array to a char bc... it
+forces the user to use only one character. Otherwise _board would
+be printed improperly.
+
 we changed ___ to ___ bc...
 
 LESSONS LEARNED
@@ -66,13 +56,11 @@ Shivasuryan Vummidi :: Created Repo & updated README.md
 
 2017-01-09
 --------------------------------------------------------------
-Edwin Mok :: see collaborative work
 Adeebur Rahman :: Added proposal.pdf
-Shivasuryan Vummidi :: see collaborative work
 
-Collaboratively
-Worked on proposal revisions.
-Worked on UML diagram
+Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
+      Worked on proposal revisions.
+      Worked on UML diagram
 ==============================================================
 
 2017-01-10
@@ -81,14 +69,14 @@ Edwin Mok :: Added Interface ConnectFour & Superclass Player
 Adeebur Rahman :: Added todo.txt, Driver class, .gitignore
 Shivasuryan Vummidi :: Added User.java
 
-Collaboratively
-Worked on todo.txt
+Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
+      Worked on todo.txt
 ==============================================================
 
 2017-01-11
 --------------------------------------------------------------
 Edwin Mok :: Added constructor to Driver. 
-Adeebur Rahman :: Worked on devlog.txt & see collaborative work
+Adeebur Rahman :: Worked on devlog.txt.
 	       	  Made print method better.
 		  Made drop work.
 		  Added pick_column.
@@ -96,19 +84,30 @@ Adeebur Rahman :: Worked on devlog.txt & see collaborative work
 		  Made drop_token work.
 		  Driver Class NOW RUNS 1 "loop" of the game.
 
-Shivasuryan Vummidi :: Pushed and worked on collaborative work.
+Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
+      instance variables name & token_name added to Player class.
+      created basic & overloaded constructor for User class.
+      defined drop_token in User class that calls upon method
+      is_column_full and drop in Woo class.
+      Changed _board instance variable to a 2D array of chars.
+      Added InputStreamReader and BufferedReader to Driver.
+      Defined is_column_full in driver class.
+      Started definition of drop method.
+      Wrote a basic print method for _board.
+      Wrote some basic test code in the main method.
+==============================================================
 
-Collaboratively
-instance variables name & token_name added to Player class.
-created basic & overloaded constructor for User class.
-defined drop_token in User class that calls upon method
-is_column_full and drop in Woo class.
-Changed _board instance variable to a 2D array of chars.
-Added InputStreamReader and BufferedReader to Driver.
-Defined is_column_full in driver class.
-Started definition of drop method.
-Wrote a basic print method for _board.
-Wrote some basic test code in the main method.
+2016-01-12
+--------------------------------------------------------------
+Adeebur Rahman :: Tweaking printBoard
+	       	  added helper methods to abstract class.
+		  reworked winning algo to make it readable and better(?)
+		  wrote getDiagonal algos.
+Shivasuryan Vummidi :: fixed typo in drop causing it to fail.
+	    	       wrote winning algo.
+
+Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
+      worked on trying to make "get" methods work.
 ==============================================================
 
 yyyy-mm-dd

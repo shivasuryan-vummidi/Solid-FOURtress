@@ -25,66 +25,43 @@ public class User extends Player{
 	    w.drop(column, this);
 	}
     }
-    public int pick_column() {
+    public int pick_column(Woo w) {
 	int column = 0;
-	try {
-	    System.out.println("Please enter what column you want to drop your token.");
-	    column = Integer.parseInt(in.readLine());
+	boolean incomplete = true;
+	while (incomplete) {
+	    try {
+		System.out.println(name + ", please enter what column you want to drop your token.");
+		column = Integer.parseInt(in.readLine());
+	    }
+	    catch(IOException e){ }
+	    if (column < 0 || column > w._board[0].length) {
+		System.out.println("Out of Range. Try again!");
+	    }
+	    else {
+		incomplete = false;
+	    }
 	}
-	catch(IOException e){ }
     	return column;
     }
     public boolean is_win(Woo w){
-	int counter_column = 0;
-	String a = getLastColumnString(w);
-	for(int x = 0; x < a.length() - 1; x++){
-	    if(token_name == a.charAt(x) && token_name == a.charAt(x + 1)){
-		counter_column++;
-	    }
+	String win = "";
+	for (int x = 0; x < 4;x++) {
+	    win += token_name;
 	}
-	if(a.charAt(7) == token_name){
-	    counter_column++;
-	}
-	//DEBUG
-	System.out.println(a);
-	System.out.println(counter_column);
-        int counter_row = 0;
-	a = getLastRowString(w);
-	for(int x = 0; x < a.length() - 1; x++){
-	    if(token_name == a.charAt(x) && token_name == a.charAt(x + 1)){
-		counter_row++;
-	    }
-	}
-	if(a.charAt(7) == token_name){
-	    counter_row++;
-	}
-	// DEBUG
-	System.out.println(a);
-	System.out.println(counter_row);
-
-	int counter_diag_right = 0;
-	//DOES NOT WORK YET, please add diagonals
-	/*a = getLastRightDiagonalString(w);
-	for(int x = 0; x < a.length() - 1; x++){
-	    if(token_name == a.charAt(x) && token_name == a.charAt(x + 1)){
-	        counter_diag_right++;
-	    }
-	}
-	if(a.charAt(7) == token_name){
-	    counter_diag_right++;
-	}
-	// DEBUG
-	System.out.println(a);
-	System.out.println(counter_row);
-	*/
-	
-	//KEEP SEPARATE FROM THE OTHERS, checks if any algorithms pop up a win
-	if(counter_column >= 4 || counter_row >= 4 || counter_diag_right >= 4){
-	    return true;
-	}
-	return false;
+	System.out.println("DIAGNOSTIC");
+	System.out.println("Last Row: " + getLastRowString(w));
+	System.out.println("Last Column: " + getLastColumnString(w));
+	System.out.println("Last Right Diag: " + getLastRightDiagonalString(w));
+	System.out.println("Last Left Diag: " + getLastLeftDiagonalString(w));
+	return hasSubString(getLastRowString(w),win) ||
+	    hasSubString(getLastColumnString(w),win) ||
+	    hasSubString(getLastRightDiagonalString(w),win) ||
+	    hasSubString(getLastLeftDiagonalString(w),win);
     }
 
+    public boolean hasSubString(String str, String lookingFor) {
+	return str.indexOf(lookingFor) != -1;
+    }
     public String getLastRowString(Woo w){
 	String s = "";
 	for (int x = 0; x < 8; x++){
@@ -102,22 +79,26 @@ public class User extends Player{
 
     public String getLastRightDiagonalString(Woo w){
 	String s = "";
-	int newX = 0;
-	int newY = 0;
-	for (int y = _lastColumn; y < 8  ; y++){
-	    newX = _lastRow--;
-	    newY = _lastColumn++;
-	}
-	for (int x = newX; x < 8; x++){
-	    s += w._board[(_lastRow + newX)  % 7][(_lastColumn - newY) % 7];
-	}
+        for (int x = 0; x < w._board.length; x++) { //start from top right of diag
+            int z = _lastColumn + _lastRow - x;     //go to bottom left of diag
+            if (0 <= z && z < w._board[0].length) { //make sure z is still in range
+		s += w._board[x][z];
+            }
+        }
 	return s;
     }
     public String getLastLeftDiagonalString(Woo w){
 	String s = "";
-	for (int x = 0; x < 8; x++){
-	    s += w._board[0][0];
-	}
+        for (int x = 0; x < w._board.length; x++) { //start from top left of diag
+            int z = _lastColumn - _lastRow + x;     //go to bottom right of diag
+            if (0 <= z && z < w._board[0].length) { //make sure z is still in range
+		s += w._board[x][z];
+            }
+        }
 	return s;
+    }
+
+    public String toString() {
+	return name;
     }
 }
