@@ -8,13 +8,13 @@ public abstract class Player {
 
     abstract void drop_token(int column,Woo w);
 
-    abstract boolean is_win();
+    abstract boolean is_win(Woo w);
 
-    abstract String getLastRowString();
+    abstract String getLastRowString(Woo w);
 
-    abstract String getLastColumnString();
+    abstract String getLastColumnString(Woo w);
 
-    abstract String getLastDiagonalString();
+    abstract String getLastRightDiagonalString(Woo w); //diagonals move in 2 different directions
 
-
+    abstract String getLastLeftDiagonalString(Woo w);
 }

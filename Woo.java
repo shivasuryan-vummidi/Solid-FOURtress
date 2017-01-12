@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class Woo {
     
-    private char[][] _board;
+    public char[][] _board;
     private boolean gameOver;
 
     private InputStreamReader isr;
@@ -17,8 +17,14 @@ public class Woo {
 	}
     }
 
-    public void check_winner(){
-	
+    public void check_winner(Player p){
+	if(p.is_win(this)){
+	    System.out.println("Player " + p + " has NOT NOT won!");
+	    gameOver = true;
+	}
+	else{
+	    System.out.println("Player " + p + " has NOT won!");
+	}
     }
 
     //DEFAULT CONSTRUCTOR
@@ -108,6 +114,7 @@ public class Woo {
 	System.out.println(player1._lastRow);
 	System.out.println(player1._lastColumn);
 	System.out.println(printBoard());
+	check_winner(player1);
     }
     public static void main(String[] args){
 	Woo a = new Woo();
