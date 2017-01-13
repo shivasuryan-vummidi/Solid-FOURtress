@@ -18,12 +18,7 @@ public class User extends Player{
 	in = new BufferedReader( isr );
     }
     public void drop_token(int column,Woo w){
-	if(w.is_column_full(column)){
-	  System.out.println("ERROR: Please try again. Column " + column + " is full.");
-	}
-	else{
-	    w.drop(column, this);
-	}
+	w.drop(column, this);
     }
     public int pick_column(Woo w) {
 	int column = 0;
@@ -34,7 +29,7 @@ public class User extends Player{
 		column = Integer.parseInt(in.readLine());
 	    }
 	    catch(IOException e){ }
-	    if (column < 0 || column > w._board[0].length) {
+	    if (column < 0 || column >= w._board[0].length) {
 		System.out.println("Out of Range. Try again!");
 	    }
 	    else {
