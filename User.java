@@ -34,7 +34,7 @@ public class User extends Player{
 		column = Integer.parseInt(in.readLine());
 	    }
 	    catch(IOException e){ }
-	    if (column < 0 || column > w._board[0].length) {
+	    if (column < 0 || column >= w._board[0].length) {
 		System.out.println("Out of Range. Try again!");
 	    }
 	    else {
