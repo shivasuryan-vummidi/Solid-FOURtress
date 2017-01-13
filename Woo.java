@@ -96,25 +96,45 @@ public class Woo {
 	System.out.println("Hello, player! ");
 	String name1 = "player1";
 	char char1 = '&';
+	String name2 = "player2";
+	char char2 = '$';
 	try{
-	    System.out.println("Please enter your name.");
+	    System.out.println("Player 1: Please enter your name.");
 	    name1 = in.readLine();
 	}
 	catch(IOException e){ }
 	try {
-	    System.out.println("Please enter what character you want to use in the game.     ");
+	    System.out.println(name1 + ": Please enter what character you want to use in the game.     ");
 	    char1 = in.readLine().charAt(0);
 	}
 	catch(IOException e){ }
+	try{
+	    System.out.println("Player 2: Please enter your name.");
+	    name2 = in.readLine();
+	}
+	catch(IOException e){ }
+	try {
+	    System.out.println(name2 + ": Please enter what character you want to use in the game.     ");
+	    char2 = in.readLine().charAt(0);
+	}
+	catch(IOException e){ }
 	User player1 = new User(name1, char1);
-	int col = -1;
+	User player2 = new User(name2, char2);
+	int col1 = -1;
+	int col2 = -1;
 	while (!gameOver) {
-	    col = player1.pick_column(this);
-	    player1.drop_token(col,this);
+	    col1 = player1.pick_column(this);
+	    player1.drop_token(col1,this);
 	    System.out.println(printBoard());
-	    System.out.println("Last row #: " + player1._lastRow);
-	    System.out.println("Last column #: " + player1._lastColumn);
+	    System.out.println("Player 1 last row #: " + player1._lastRow);
+	    System.out.println("Player 1 last column #: " + player1._lastColumn);
 	    check_winner(player1);
+	    col2 = player2.pick_column(this);
+	    player2.drop_token(col2, this);
+	    System.out.println(printBoard());
+	    System.out.println("Player 2 last row #: " + player2._lastRow);
+	    System.out.println("Player 2 last column #: " + player2._lastColumn);
+	    check_winner(player2);
 	}
     }
     public static void main(String[] args){
