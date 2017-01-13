@@ -138,6 +138,7 @@ public class Woo {
 	    System.out.println("Player 1 last row #: " + player1._lastRow);
 	    System.out.println("Player 1 last column #: " + player1._lastColumn);
 	    check_winner(player1);
+	    if (gameOver == true) break;
 	    incomplete = true;
 	    while (incomplete) {
 		col2 = player2.pick_column(this);
