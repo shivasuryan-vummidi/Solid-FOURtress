@@ -123,14 +123,32 @@ public class Woo {
 	int col1 = -1;
 	int col2 = -1;
 	while (!gameOver) {
-	    col1 = player1.pick_column(this);
-	    player1.drop_token(col1,this);
+	    boolean incomplete = true;
+	    while (incomplete) {
+		col1 = player1.pick_column(this);
+		if(is_column_full(col1)){
+		    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
+		}
+		else {
+		    player1.drop_token(col1,this);
+		    incomplete = false;
+		}
+	    }
 	    System.out.println(printBoard());
 	    System.out.println("Player 1 last row #: " + player1._lastRow);
 	    System.out.println("Player 1 last column #: " + player1._lastColumn);
 	    check_winner(player1);
-	    col2 = player2.pick_column(this);
-	    player2.drop_token(col2, this);
+	    incomplete = true;
+	    while (incomplete) {
+		col2 = player2.pick_column(this);
+		if(is_column_full(col2)){
+		    System.out.println("ERROR: Please try again. Column " + col2 + " is full.");
+		}
+		else {
+		    player2.drop_token(col2,this);
+		    incomplete = false;
+		}
+	    }
 	    System.out.println(printBoard());
 	    System.out.println("Player 2 last row #: " + player2._lastRow);
 	    System.out.println("Player 2 last column #: " + player2._lastColumn);
