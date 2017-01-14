@@ -3,7 +3,7 @@ public class Computer extends Player {
     public Computer(){
 	tokens = 32;
 	name = "Computer";
-	token_name = "C";
+	token_name = 'C';
     }
 
     public void drop_token(int column, Woo w){
@@ -22,7 +22,9 @@ public class Computer extends Player {
 	    hasSubString(getLastRightDiagonalString(w),win) ||
 	    hasSubString(getLastLeftDiagonalString(w),win);
     }
-
+    public boolean hasSubString(String str, String lookingFor) {
+	return str.indexOf(lookingFor) != -1;
+    }
     public String getLastRowString(Woo w){
 	String s = "";
 	for (int x = 0; x < 8; x++){
