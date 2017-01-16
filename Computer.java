@@ -80,5 +80,67 @@ public class Computer extends Player {
 	}
 	return s;
     }
+
+    //SMART DEPLOYMENT
+
+    public boolean isTriple(Woo w){
+	
+    }
+
+    //Horizontal Triple Check
+    public boolean isHorizontalTriple(Woo w){
+	for (int x = 0; x < w._board.length; x++){
+	    for (int y = 0; y < w._board[x].length - 2; y++){
+		if (w._board[x][y] ==
+		    w._board[x][y+1] && w._board[x][y+1] ==
+		    w._board[x][y+2]){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
+
+    //Vertical Triple Check
+    public boolean isVerticalTriple(Woo w){
+	for (int y = 0; y < w._board[0].length; y++){
+	    for (int x = 0; x < w._board.length - 2; x++){
+		if (w._board[x][y] ==
+		    w._board[x+1][y] && w._board[x+1][y] ==
+		    w._board[x+2][y]){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
+
+    //Left Diagonal Triple Check
+    public boolean isLDTriple(Woo w){
+	for (int x = 0; x < 5; x++){
+	    for (int y = 0; y < 5; y++){
+		if (w._board[x][y] ==
+		    w._board[x+1][y+1] && w._board[x+1][y+1] ==
+		    w._board[x+2][y+2]){
+		    return true;
+		}
+	    }
+	}
+        return false;
+    }
+
+    //Right Diagonal Triple Check
+    public boolean isRDTriple(Woo w){
+	for (int x = 0; x < 5; x++){
+	    for (int y = 7; y > 2; y++){
+		if (w._board[x][y] == 
+		    w._board[x+1][y-1] && w._board[x+1][y-1] ==
+		    w._board[x+2][y-2]){
+		    return true;
+		}
+	    }
+	}
+	return false;
+    }
     
 }
