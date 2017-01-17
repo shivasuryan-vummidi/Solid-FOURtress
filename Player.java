@@ -68,4 +68,6 @@ public abstract class Player {
     public String toString() {
 	return name;
     }
+
+    abstract int pick_column(Woo w);
 }
