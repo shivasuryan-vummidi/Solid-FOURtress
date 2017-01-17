@@ -110,7 +110,7 @@ public class Woo {
 	s = "Please enter what char you want to use in the game. It cannot be C or underscore and can only be 1 letter.";
 	System.out.println(s);
 	char1 = Keyboard.readChar();
-	while (char1 == "C" || char1 == "_"){
+	while (char1 == 'C' || char1 == '_'){
 	    s = "You cannot use C or _ as your token name! Please try again: ";
 	    System.out.println(s);
 	    char1 = Keyboard.readChar();
@@ -127,7 +127,7 @@ public class Woo {
 		s = "Please enter what char you want to use in the game. It can only be 1 letter and cannot be underscore.";
 		System.out.println(s);
 		char2 = Keyboard.readChar();
-		while (char2 == "_"){
+		while (char2 == '_'){
 		    s = "You cannot use _ as your token name! Please try again: ";
 		    System.out.println(s);
 		    char2 = Keyboard.readChar();
