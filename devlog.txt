@@ -99,6 +99,7 @@ Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
 
 2016-01-12
 --------------------------------------------------------------
+Edwin Mok :: added Computer class.
 Adeebur Rahman :: Tweaking printBoard
 	       	  added helper methods to abstract class.
 		  reworked winning algo to make it readable and better(?)
@@ -110,9 +111,28 @@ Edwin Mok, Adeebur Rahman, Shivasuryan Vummidi ::
       worked on trying to make "get" methods work.
 ==============================================================
 
-yyyy-mm-dd
+2017-01-14
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Shivasuryan Vummidi :: 2 player functionalitiy
 ==============================================================
+
+2017-01-16
+--------------------------------------------------------------
+Edwin Mok :: Added some methods in Computer class to help with AI.
+Adeebur Rahman :: Moved duplicate code to Player super class
+==============================================================
+
+2017-01-17
+--------------------------------------------------------------
+Edwin Mok :: Implemented Keyboard.
+Adeebur Rahman :: pushed Keyboard.java
+Shivasuryan Vummidi :: Updated readme
+==============================================================
+
+2017-01-dd
+--------------------------------------------------------------
+Edwin Mok :: <Thing member did.>
+Adeebur Rahman :: <Thing member did.>
+Shivasuryan Vummidi :: <Thing member did.>
+==============================================================
+
