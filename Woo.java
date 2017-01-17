@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import cs1.Keyboard;
 public class Woo {
     
     public char[][] _board;
@@ -94,41 +95,34 @@ public class Woo {
     
 
     public void newGame(){
+	String s = "";
 	System.out.println("Hello, player! ");
 	String name1 = "player1";
 	char char1 = '&';
 	String name2 = "player2";
 	char char2 = '$';
 	int gameMode = 0;
-	try{
-	    System.out.println("Player 1: Please enter your name.");
-	    name1 = in.readLine();
-	}
-	
-	catch(IOException e){ }
-	try {
-	    System.out.println(name1 + ": Please enter what char you want to use in the game. It can only be 1 letter     ");
-	    char1 = in.readLine().charAt(0);
-	}
-	catch(IOException e){ }
-	//////////////////////////////////////////////////////
-	try{
-	    System.out.println("Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2 player\nEnter 1 for computer");
-	    try{
-		gameMode = Integer.parseInt(in.readLine());
-	    }
-	    catch(IOException e){}
+
+	s = "Player 1: Please enter your name: ";
+	System.out.println(s);
+        name1 = Keyboard.readWord();
+
+	s = "Please enter what char you want to use in the game. It cannot be C or underscore and can only be 1 letter.";
+	System.out.println(s);
+	char1 = Keyboard.readChar();
+	/////////////////////////////////////////////////////////
+
+	s = "Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2-Player\nEnter 1 for Computer";
+	System.out.println(s);
+	gameMode = Keyboard.readInt();
 	    if(gameMode == 0){
-		try{
-		    System.out.println("Player 2: Please enter your name.");
-		    name2 = in.readLine();
-		}
-		catch(IOException e){ }
-		try {
-		    System.out.println(name2 + ": Please enter what char you want to use in the game. It can only be 1 letter.     ");
-		    char2 = in.readLine().charAt(0);
-		}
-		catch(IOException e){ }
+		s = "Player 2: Please enter your name: ";
+		System.out.println(s);
+		name2 = Keyboard.readWord();
+		s = "Please enter what char you want to use in the game. It can only be 1 letter and cannot be underscore.";
+		System.out.println(s);
+		char2 = Keyboard.readChar();
+
 		User player1 = new User(name1, char1);
 		User player2 = new User(name2, char2);
 		int col1 = -1;
@@ -205,10 +199,8 @@ public class Woo {
 		System.out.println("This gamemode is nonexistent.");
 	    }
 	}
-	catch(Exception e){};
 	//////////////////////////////////////////////////////
 	
-    }
     public static void main(String[] args){
 	Woo a = new Woo();
     }
