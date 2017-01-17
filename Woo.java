@@ -193,17 +193,8 @@ public class Woo {
 		    System.out.println("Player 1 last column #: " + player1._lastColumn);
 		    check_winner(player1);
 		    if (gameOver == true) break;
-		    incomplete = true;
-		    while (incomplete) {
-			col2 = (int)(Math.random() * 7);
-			if(is_column_full(col2)){
-			    System.out.println("ERROR: Please try again. Column " + col2 + " is full.");
-			}
-			else {
-			    computer1.drop_token(col2,this);
-			    incomplete = false;
-			}
-		    }
+		    col2 = computer1.pick_column(this);
+		    computer1.drop_token(col2,this);
 		    System.out.println(printBoard());
 		    System.out.println("Computer last row #: " + computer1._lastRow);
 		    System.out.println("Computer last column #: " + computer1._lastColumn);
