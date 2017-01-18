@@ -1,11 +1,6 @@
-import java.io.*;
-import java.util.*;
+import cs1.Keyboard;
 
 public class User extends Player{
-
-    
-    private InputStreamReader isr;
-    private BufferedReader in;
 
     public User(){
 	tokens = 32;
@@ -15,21 +10,16 @@ public class User extends Player{
         this();
 	this.name = name;
 	this.token_name = token_name;
-	isr = new InputStreamReader( System.in );
-	in = new BufferedReader( isr );
     }
 
     public int pick_column(Woo w) {
 	int column = 0;
 	boolean incomplete = true;
 	while (incomplete) {
-	    try {
-		System.out.println(name + ", please enter what column you want to drop your token.");
-		column = Integer.parseInt(in.readLine());
-	    }
-	    catch(IOException e){ }
-	    if (column < 0 || column >= w._board[0].length) {
-		System.out.println("Out of Range. Try again!");
+	    System.out.println(name + ", please enter what column you want to drop your token.");
+	    column = Keyboard.readInt();
+	    if (column < 0 || column >= w.numColumns) {
+		System.out.println("Out of Range or Invalid. Try again!");
 	    }
 	    else {
 		incomplete = false;
