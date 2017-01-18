@@ -8,6 +8,7 @@ public abstract class Player {
 
     public void drop_token(int column,Woo w){
 	w.drop(column, this);
+	tokens -= 1;
     }
 
     public boolean is_win(Woo w){
@@ -31,14 +32,14 @@ public abstract class Player {
     }
     public String getLastRowString(Woo w){
 	String s = "";
-	for (int x = 0; x < 8; x++){
+	for (int x = 0; x < w.numColumns; x++){
 	    s += w._board[_lastRow][x];
 	}
 	return s;
     }
     public String getLastColumnString(Woo w){
 	String s = "";
-	for (int x = 0; x < 8; x++){
+	for (int x = 0; x < w.numRows; x++){
 	    s += w._board[x][_lastColumn];
 	}
 	return s;
@@ -46,9 +47,9 @@ public abstract class Player {
 
     public String getLastRightDiagonalString(Woo w){
 	String s = "";
-        for (int x = 0; x < w._board.length; x++) { //start from top right of diag
+        for (int x = 0; x < w.numRows; x++) { //start from top right of diag
             int z = _lastColumn + _lastRow - x;     //go to bottom left of diag
-            if (0 <= z && z < w._board[0].length) { //make sure z is still in range
+            if (0 <= z && z < w.numColumns) { //make sure z is still in range
 		s += w._board[x][z];
             }
         }
@@ -56,9 +57,9 @@ public abstract class Player {
     }
     public String getLastLeftDiagonalString(Woo w){
 	String s = "";
-        for (int x = 0; x < w._board.length; x++) { //start from top left of diag
+        for (int x = 0; x < w.numRows; x++) { //start from top left of diag
             int z = _lastColumn - _lastRow + x;     //go to bottom right of diag
-            if (0 <= z && z < w._board[0].length) { //make sure z is still in range
+            if (0 <= z && z < w.numColumns) { //make sure z is still in range
 		s += w._board[x][z];
             }
         }

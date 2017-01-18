@@ -10,7 +10,7 @@ public class Computer extends Player {
 	int column = -1;
 	boolean incomplete = true;
 	while (incomplete) {
-	    column = (int)(Math.random() * w._board.length);
+	    column = (int)(Math.random() * w.numColumns);
 	    if (!w.is_column_full(column)) {
 		incomplete = false;
 	    }
@@ -27,7 +27,7 @@ public class Computer extends Player {
 
     //Horizontal Triple Check
     public boolean isHorizontalTriple(Woo w){
-	for (int x = 0; x < w._board.length; x++){
+	for (int x = 0; x < w.numRows; x++){
 	    for (int y = 0; y < w._board[x].length - 2; y++){
 		if (w._board[x][y] ==
 		    w._board[x][y+1] && w._board[x][y+1] ==
@@ -41,8 +41,8 @@ public class Computer extends Player {
 
     //Vertical Triple Check
     public boolean isVerticalTriple(Woo w){
-	for (int y = 0; y < w._board[0].length; y++){
-	    for (int x = 0; x < w._board.length - 2; x++){
+	for (int y = 0; y < w.numColumns; y++){
+	    for (int x = 0; x < w.numRows - 2; x++){
 		if (w._board[x][y] ==
 		    w._board[x+1][y] && w._board[x+1][y] ==
 		    w._board[x+2][y]){
