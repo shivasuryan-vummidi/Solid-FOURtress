@@ -126,6 +126,9 @@ Adeebur Rahman :: Moved duplicate code to Player super class
 --------------------------------------------------------------
 Edwin Mok :: Implemented Keyboard.
 Adeebur Rahman :: pushed Keyboard.java
+	       	  fixed printBoard again.
+		  implemented draw functionality.
+		  implemented different board sizes.
 Shivasuryan Vummidi :: Updated readme
 ==============================================================
 
