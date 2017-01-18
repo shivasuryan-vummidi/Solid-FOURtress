@@ -132,6 +132,11 @@ public class Woo {
 		    System.out.println(s);
 		    char2 = Keyboard.readChar();
 		}
+		while (char2 == char1){
+		    s = "You cannot use the same token as Player 1! Please try again: ";
+		    System.out.println(s);
+		    char2 = Keyboard.readChar();
+		}
 
 		User player1 = new User(name1, char1);
 		User player2 = new User(name2, char2);
