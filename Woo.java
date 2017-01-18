@@ -111,7 +111,7 @@ public class Woo {
 	else if (boardSize == 2) create_board(7,8);
 	else if (boardSize == 3) create_board(7,10);
 	else if (boardSize == 4) create_board(8,8);
-	
+
 	String name1 = "player1";
 	char char1 = '&';
 	String name2 = "player2";
@@ -142,6 +142,11 @@ public class Woo {
 		s = "Player 2: Please enter your name: ";
 		System.out.println(s);
 		name2 = Keyboard.readWord();
+		while (name1.equals(name2)){
+		    s = "Your name cannot be the same as Player 1! Please try again: ";
+		    System.out.println(s);
+		    name2 = Keyboard.readWord();
+		}
 		s = "Please enter what char you want to use in the game. It can only be 1 letter and cannot be underscore.";
 		System.out.println(s);
 		char2 = Keyboard.readChar();
