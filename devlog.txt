@@ -129,7 +129,9 @@ Adeebur Rahman :: pushed Keyboard.java
 	       	  fixed printBoard again.
 		  implemented draw functionality.
 		  implemented different board sizes.
-Shivasuryan Vummidi :: Updated readme
+		  Updated readme with brief project description.
+		  Updated readme with launch instructions.
+Shivasuryan Vummidi :: Updated readme with features.
 ==============================================================
 
 2017-01-dd
