@@ -1,5 +1,7 @@
 public class HardComputer extends Player {
 
+    private int vertTripleLocation, horzTripleLocation;
+
     public HardComputer(){
 	name = "Computer";
 	token_name = 'C';
@@ -26,6 +28,7 @@ public class HardComputer extends Player {
 
     //Horizontal Triple Check
     public boolean isHorizontalTriple(Woo w){
+	horzTripleLocation = -1;
 	for (int x = 0; x < w.numRows; x++){
 	    for (int y = 0; y < w._board[x].length - 2; y++){
 		if (w._board[x][y] ==
@@ -40,44 +43,18 @@ public class HardComputer extends Player {
 
     //Vertical Triple Check
     public boolean isVerticalTriple(Woo w){
+	vertTripleLocation = -1;
 	for (int y = 0; y < w.numColumns; y++){
 	    for (int x = 0; x < w.numRows - 2; x++){
 		if (w._board[x][y] ==
 		    w._board[x+1][y] && w._board[x+1][y] ==
 		    w._board[x+2][y]){
+		    tripleLocation = y;
 		    return true;
 		}
 	    }
 	}
 	return false;
     }
-
-    //Left Diagonal Triple Check
-    public boolean isLDTriple(Woo w){
-	for (int x = 0; x < 5; x++){
-	    for (int y = 0; y < 5; y++){
-		if (w._board[x][y] ==
-		    w._board[x+1][y+1] && w._board[x+1][y+1] ==
-		    w._board[x+2][y+2]){
-		    return true;
-		}
-	    }
-	}
-        return false;
-    }
-
-    //Right Diagonal Triple Check
-    public boolean isRDTriple(Woo w){
-	for (int x = 0; x < 5; x++){
-	    for (int y = 7; y > 2; y++){
-		if (w._board[x][y] == 
-		    w._board[x+1][y-1] && w._board[x+1][y-1] ==
-		    w._board[x+2][y-2]){
-		    return true;
-		}
-	    }
-	}
-	return false;
-    }
-    
+  
 }
