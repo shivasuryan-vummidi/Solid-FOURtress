@@ -32,17 +32,10 @@ public class Woo {
 
     //DEFAULT CONSTRUCTOR
     public Woo(){
-        create_board(8,8);
 	gameOver = false;
 	newGame();
     }
 
-    public Woo(int rows, int columns) {
-	create_board(rows, columns);
-	gameOver = false;
-	newGame();
-    }
-    
     public boolean is_column_full(int column){
         return(_board[0][column] != '_');
     }
@@ -99,7 +92,26 @@ public class Woo {
 
     public void newGame(){
 	String s = "";
-	System.out.println("Hello, player! ");
+	s = "Welcome to Connect Four!\n";
+	s += "\nChoose Your Board size: \n";
+	s += "\t1. 6 rows by 7 Columns\n";
+	s += "\t2. 7 rows by 8 Columns\n";
+	s += "\t3. 7 rows by 10 Columns\n";
+	s += "\t4. 8 rows by 8 Columns \n";
+	s += "Selection: ";
+	System.out.print(s);
+       	int boardSize = -1;
+	boardSize = Keyboard.readInt();
+	while (boardSize < 0 || boardSize > 4) {
+	    System.out.println("Invalid Option. Try Again!");
+	    boardSize = Keyboard.readInt();
+	}
+
+	if (boardSize == 1) create_board(6,7);
+	else if (boardSize == 2) create_board(7,8);
+	else if (boardSize == 3) create_board(7,10);
+	else if (boardSize == 4) create_board(8,8);
+	
 	String name1 = "player1";
 	char char1 = '&';
 	String name2 = "player2";
@@ -224,6 +236,6 @@ public class Woo {
     //////////////////////////////////////////////////////
 	
     public static void main(String[] args){
-	Woo a = new Woo(6,7);
+	Woo a = new Woo();
     }
 }
