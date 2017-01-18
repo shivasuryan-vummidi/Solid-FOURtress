@@ -140,7 +140,9 @@ public class Woo {
 		}
 
 		User player1 = new User(name1, char1);
+		player1.tokens = (numRows * numColumns) / 2;
 		User player2 = new User(name2, char2);
+		player2.tokens = (numRows * numColumns) / 2;
 		int col1 = -1;
 		int col2 = -1;
 		while (!gameOver) {
@@ -184,7 +186,9 @@ public class Woo {
 	    else if(gameMode == 1){
 		mode = false;
 		User player1 = new User(name1, char1);
+		player1.tokens = (numRows * numColumns) / 2;
 		Computer computer1  = new Computer();
+		computer1.tokens = (numRows * numColumns) / 2;
 		int col1 = -1;
 		int col2 = -1;
 		while (!gameOver) {
@@ -220,6 +224,6 @@ public class Woo {
     //////////////////////////////////////////////////////
 	
     public static void main(String[] args){
-	Woo a = new Woo();
+	Woo a = new Woo(6,7);
     }
 }
