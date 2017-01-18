@@ -1,26 +1,28 @@
-import java.io.*;
-import java.util.*;
 import cs1.Keyboard;
 public class Woo {
     
     public char[][] _board;
     private boolean gameOver;
-
-    private InputStreamReader isr;
-    private BufferedReader in;
-
-    public void create_board() {
-	_board = new char[8][8];
-	for (int x = 0; x < _board[0].length;x++) {
-	    for (int y = 0; y < _board.length;y++) {
+    public int numRows, numColumns;
+    
+    public void create_board(int rows, int columns) {
+	numRows = rows;
+	numColumns = columns;
+	_board = new char[rows][columns];
+	for (int x = 0; x < numRows;x++) {
+	    for (int y = 0; y < numColumns;y++) {
 		_board[x][y] = '_';
 	    }
 	}
     }
 
-    public void check_winner(Player p){
-	if(p.is_win(this)){
-	    System.out.println("Player " + p + " has won!");
+    public void check_winner(Player p1, Player p2){
+	if(p1.is_win(this)){
+	    System.out.println("Player " + p1 + " has won!");
+	    gameOver = true;
+	}
+	else if (p1.tokens == 0 && p2.tokens == 0) {
+	    System.out.println("Draw. Nobody Wins!");
 	    gameOver = true;
 	}
 	else{
@@ -30,10 +32,7 @@ public class Woo {
 
     //DEFAULT CONSTRUCTOR
     public Woo(){
-        create_board();
 	gameOver = false;
-	isr = new InputStreamReader( System.in );
-	in = new BufferedReader( isr );
 	newGame();
     }
 
@@ -47,7 +46,7 @@ public class Woo {
     
     public void drop(int column, Player p){
 	int row = 0;
-	for (int x = 0; x < _board[column].length; x++) {
+	for (int x = 0; x < numRows; x++) {
 	    if (_board[x][column] == '_') {
 		row = x;
 	    }
@@ -58,45 +57,61 @@ public class Woo {
     }
 
     public String printBoard(){
-	String s = "╔";
-	for (int z = 0; z < _board[0].length-1;z++) {
+	String s = "  ";
+	for (int x = 0; x < numColumns; x++ ) {
+	    s += x + " ";
+	}
+	s += "\n ╔";
+	for (int y = 0; y < numColumns-1; y++) {
 	    s += "═╦";
 	}
-	s += "═╗\n";
-	for (int x = 0; x < _board[0].length;x++) {
-	    s += "║";
-	    for (int y = 0; y < _board.length;y++) {
-    		s += _board[x][y];
-		if (y < _board.length-1) {
-		    s += "║";
-		}
-		else {
-		    if (y % 2 == 0) {
-			s += "╣";
-		    }
-		    else {
-			s += "║";
-		    }
-		}
+	s += "═╗\n";	
+	for (int x = 0; x < numRows; x++) {
+	    s += x;
+	    for (int y = 0; y < numColumns; y++) {
+		s += "║" + _board[x][y];
 	    }
-	    if (x < _board[0].length-1) {
-		s += "\n╠";
-		for (int w = 0; w < _board[0].length-1;w++) {
+	    s += "║";
+		
+	    if (x < numRows-1) {
+		s += "\n ╠";
+		for (int y = 0; y < numColumns-1; y++) {
 		    s += "═╬";
 		}
 		s += "═╣\n";
 	    }
-	    else {
-		s += "\n╚═╩═╩═╩═╩═╩═╩═╩═╝\n"; 
-	    }
 	}
+	s += "\n ╚";
+	for (int y = 0; y < numColumns-1; y++) {
+	    s += "═╩";
+	}
+	s += "═╝\n"; 
 	return s;
     }
     
 
     public void newGame(){
 	String s = "";
-	System.out.println("Hello, player! ");
+	s = "Welcome to Connect Four!\n";
+	s += "\nChoose Your Board size: \n";
+	s += "\t1. 6 rows by 7 Columns\n";
+	s += "\t2. 7 rows by 8 Columns\n";
+	s += "\t3. 7 rows by 10 Columns\n";
+	s += "\t4. 8 rows by 8 Columns \n";
+	s += "Selection: ";
+	System.out.print(s);
+       	int boardSize = -1;
+	boardSize = Keyboard.readInt();
+	while (boardSize < 0 || boardSize > 4) {
+	    System.out.println("Invalid Option. Try Again!");
+	    boardSize = Keyboard.readInt();
+	}
+
+	if (boardSize == 1) create_board(6,7);
+	else if (boardSize == 2) create_board(7,8);
+	else if (boardSize == 3) create_board(7,10);
+	else if (boardSize == 4) create_board(8,8);
+	
 	String name1 = "player1";
 	char char1 = '&';
 	String name2 = "player2";
@@ -119,16 +134,14 @@ public class Woo {
 
 	s = "Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2-Player\nEnter 1 for Computer";
 	System.out.println(s);
-	gameMode = Keyboard.readInt();
+	boolean mode = true;
+	while (mode) {
+	    gameMode = Keyboard.readInt();
 	    if(gameMode == 0){
+		mode = false;
 		s = "Player 2: Please enter your name: ";
 		System.out.println(s);
 		name2 = Keyboard.readWord();
-		while (name2 == name1){
-		    s = "You cannot have the same name as Player 1! Please try again: ";
-		    System.out.println(s);
-		    name2 = Keyboard.readWord();
-		}
 		s = "Please enter what char you want to use in the game. It can only be 1 letter and cannot be underscore.";
 		System.out.println(s);
 		char2 = Keyboard.readChar();
@@ -144,7 +157,9 @@ public class Woo {
 		}
 
 		User player1 = new User(name1, char1);
+		player1.tokens = (numRows * numColumns) / 2;
 		User player2 = new User(name2, char2);
+		player2.tokens = (numRows * numColumns) / 2;
 		int col1 = -1;
 		int col2 = -1;
 		while (!gameOver) {
@@ -162,7 +177,7 @@ public class Woo {
 		    System.out.println(printBoard());
 		    System.out.println("Player 1 last row #: " + player1._lastRow);
 		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1);
+		    check_winner(player1,player2);
 		    if (gameOver == true) break;
 		    incomplete = true;
 		    while (incomplete) {
@@ -178,7 +193,7 @@ public class Woo {
 		    System.out.println(printBoard());
 		    System.out.println("Player 2 last row #: " + player2._lastRow);
 		    System.out.println("Player 2 last column #: " + player2._lastColumn);
-		    check_winner(player2);
+		    check_winner(player2,player1);
 		}
 	    }
 
@@ -186,8 +201,11 @@ public class Woo {
 	    //Player vs computer - EASY
 	    /////
 	    else if(gameMode == 1){
+		mode = false;
 		User player1 = new User(name1, char1);
+		player1.tokens = (numRows * numColumns) / 2;
 		Computer computer1  = new Computer();
+		computer1.tokens = (numRows * numColumns) / 2;
 		int col1 = -1;
 		int col2 = -1;
 		while (!gameOver) {
@@ -205,21 +223,22 @@ public class Woo {
 		    System.out.println(printBoard());
 		    System.out.println("Player 1 last row #: " + player1._lastRow);
 		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1);
+		    check_winner(player1,computer1);
 		    if (gameOver == true) break;
 		    col2 = computer1.pick_column(this);
 		    computer1.drop_token(col2,this);
 		    System.out.println(printBoard());
 		    System.out.println("Computer last row #: " + computer1._lastRow);
 		    System.out.println("Computer last column #: " + computer1._lastColumn);
-		    check_winner(computer1);
+		    check_winner(computer1,player1);
 		}
 	    }
 	    else{
-		System.out.println("This gamemode is nonexistent.");
+		System.out.println("This gamemode is nonexistent. Try Again");
 	    }
 	}
-	//////////////////////////////////////////////////////
+    }
+    //////////////////////////////////////////////////////
 	
     public static void main(String[] args){
 	Woo a = new Woo();
