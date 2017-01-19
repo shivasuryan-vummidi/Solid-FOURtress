@@ -132,7 +132,7 @@ public class Woo {
 	}
 	/////////////////////////////////////////////////////////
 
-	s = "Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2-Player\nEnter 1 for Computer with Easy Difficulty\nEnter 2 for Computer with Medium Difficulty";
+	s = "Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2-Player\nEnter 1 for Computer with Easy Difficulty\nEnter 2 for Computer with Medium Difficulty\nEnter 3 for TBM, the almighty Topher Brown Mykolyk, to make battle with you!";
 	System.out.println(s);
 	boolean mode = true;
 	while (mode) {
@@ -268,6 +268,39 @@ public class Woo {
 		    System.out.println(printBoard());
 		    System.out.println("Computer last row #: " + computer1._lastRow);
 		    System.out.println("Computer last column #: " + computer1._lastColumn);
+		    check_winner(computer1,player1);
+		}
+	    }
+	    else if (gameMode == 3){
+		mode = false;
+		User player1 = new User(name1, char1);
+		player1.tokens = (numRows * numColumns) / 2;
+	        TBM computer1  = new TBM();
+		computer1.tokens = (numRows * numColumns) / 2;
+		int col1 = -1;
+		int col2 = -1;
+		while (!gameOver) {
+		    boolean incomplete = true;
+		    while (incomplete) {
+			col1 = player1.pick_column(this);
+			if(is_column_full(col1)){
+			    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
+			}
+			else {
+			    player1.drop_token(col1,this);
+			    incomplete = false;
+			}
+		    }
+		    System.out.println(printBoard());
+		    System.out.println("Player 1 last row #: " + player1._lastRow);
+		    System.out.println("Player 1 last column #: " + player1._lastColumn);
+		    check_winner(player1,computer1);
+		    if (gameOver == true) break;
+		    col2 = computer1.pick_column(this);
+		    computer1.drop_token(col2,this);
+		    System.out.println(printBoard());
+		    System.out.println("TBM last row #: " + computer1._lastRow);
+		    System.out.println("TBM last column #: " + computer1._lastColumn);
 		    check_winner(computer1,player1);
 		}
 	    }
