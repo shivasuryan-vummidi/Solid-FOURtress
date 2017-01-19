@@ -1,6 +1,7 @@
 public class HardComputer extends Computer {
 
     private int vertTripleLocation, horzTripleLocation;
+    private int playerVTL, playerHTL;
 
     public HardComputer(){
 	name = "HardComputer";
@@ -52,12 +53,11 @@ public class HardComputer extends Computer {
 		if (w._board[x][y] ==
 		    w._board[x+1][y] && w._board[x+1][y] ==
 		    w._board[x+2][y]){
-		    tripleLocation = y;
+		    vertTripleLocation = y;
 		    return true;
 		}
 	    }
 	}
 	return false;
     }
-  
 }
