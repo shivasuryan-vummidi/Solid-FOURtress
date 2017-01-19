@@ -1,9 +1,9 @@
-public class HardComputer extends Player {
+public class HardComputer extends Computer {
 
     private int vertTripleLocation, horzTripleLocation;
 
     public HardComputer(){
-	name = "Computer";
+	name = "HardComputer";
 	token_name = 'C';
     }
 
@@ -15,6 +15,9 @@ public class HardComputer extends Player {
 	    if (!w.is_column_full(column)) {
 		incomplete = false;
 	    }
+	    else if(isVerticalTriple(w)){
+		column = vertTripleLocation;
+	    }
 	    else { }
 	}
 	return column;
@@ -22,9 +25,9 @@ public class HardComputer extends Player {
     
     //SMART DEPLOYMENT
 
-    public boolean isTriple(Woo w){
-	return true;
-    }
+    /*public boolean isTriple(Woo w){
+	return (isHorizontalTriple(w) && isVerticalTriple(w));
+	}*/
 
     //Horizontal Triple Check
     public boolean isHorizontalTriple(Woo w){
