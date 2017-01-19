@@ -17,7 +17,18 @@ public class HardComputer extends Computer {
 		incomplete = false;
 	    }
 	    else if(isVerticalTriple(w)){
-		column = vertTripleLocation;
+	        return vertTripleLocation;
+	    }
+	    else if(isVerticalTriple(w)){
+		int a = -1;
+		//Basically, this checks either side of the triple to see whether there is a vacancy in the area to the left of the board. It then looks for whether or not the tile 1 left and 1 down is filled or not. 
+		if(w._board[(vertTripleLocation + a) % w.numColumns][(horzTripleLocation - 1) & w.numRows] != '_'){
+		    column = vertTripleLocation + a;
+		}
+		else{
+		    a = 1;
+		    column = (vertTripleLocation + a ) % w.numColumns;
+		}
 	    }
 	    else { }
 	}
