@@ -13,6 +13,10 @@ OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wow we so BOSS bc we figured out how to get diagonals.
 
+wow we so BOSS bc we figured out how to do horizontal AI.
+
+wow we so BOSS bc we figured out how to do diagonal AI.
+
 wow we so BOSS bc...
 
 UNRESOLVED ISSUES
@@ -26,15 +30,21 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed the board from a 2D string array to a char bc... it
+we changed the board from a 2D string array to a char bc it
 forces the user to use only one character. Otherwise _board would
 be printed improperly.
+
+we decided to scrap AI because of its difficulty.
+
+we decided to actually do AI after being enlightened.
+
+we decided to implement AI vs. AI
 
 we changed ___ to ___ bc...
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
+AI isn't impossible.
 ||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -134,10 +144,27 @@ Adeebur Rahman :: pushed Keyboard.java
 Shivasuryan Vummidi :: Updated readme with features.
 ==============================================================
 
+2017-01-18
+--------------------------------------------------------------
+Edwin Mok :: Fixed same token, same name issue.
+Adeebur Rahman :: Worked on adding HardComputer instance vars.
+Shivasuryan Vummidi :: updated README
+==============================================================
+
+2017-01-19
+--------------------------------------------------------------
+Edwin Mok, Shivasuryan Vummidi :: wrote vertical AI.
+Adeebur Rahman :: complete AI overhaul.
+	       	  separated into 4 different difficulties.
+		  complete overhaul of Game Starting mechanic.
+		  improved AI again
+		  updated README
+Shivasuryan Vummidi :: updated README
+==============================================================
+
 2017-01-dd
 --------------------------------------------------------------
 Edwin Mok :: <Thing member did.>
 Adeebur Rahman :: <Thing member did.>
 Shivasuryan Vummidi :: <Thing member did.>
 ==============================================================
-

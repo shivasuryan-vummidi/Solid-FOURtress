@@ -1,7 +1,7 @@
 public class MediumComputer extends EasyComputer {
 
     public MediumComputer(){
-	name = "Computer";
+	name = "MediumComputer";
 	token_name = 'M';
     }
 
@@ -12,10 +12,12 @@ public class MediumComputer extends EasyComputer {
 
     public int pick_column(Woo w, Player p) {
 	String almost1 = "_" + p.token_name + p.token_name + p.token_name;
-	String lastCol = p.getLastColumnString(w);
-	if (hasSubString(lastCol, almost1)) {
-	    return p._lastColumn;
+	for (int x = 0; x < w.numColumns;x++) {
+	    String Col = p.getColumnString(w,x);
+	    if (hasSubString(Col, almost1)) {
+		return p._lastColumn;
+	    }
 	}
-	else return super.pick_column(w, p);
+	return super.pick_column(w, p);
     }
 }
