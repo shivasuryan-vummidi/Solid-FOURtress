@@ -30,45 +30,86 @@ public abstract class Player {
     public boolean hasSubString(String str, String lookingFor) {
 	return str.indexOf(lookingFor) != -1;
     }
-    public String getLastRowString(Woo w){
+
+    public String getRowString(Woo w, int row) {
 	String s = "";
-	for (int x = 0; x < w.numColumns; x++){
-	    s += w._board[_lastRow][x];
+	if (row > w.numRows-1) {
+	    for (int x = 0; x < w.numColumns; x++) {
+		s += "-";
+	    }
+	    return s;
+	}
+	else {
+	    for (int x = 0; x < w.numColumns; x++){
+		s += w._board[row][x];
+	    }
 	}
 	return s;
     }
-    public String getLastColumnString(Woo w){
+
+    public String getLastRowString(Woo w){
+	return getRowString(w, _lastRow);
+    }
+
+    public String getColumnString(Woo w, int column) {
 	String s = "";
 	for (int x = 0; x < w.numRows; x++){
-	    s += w._board[x][_lastColumn];
+	    s += w._board[x][column];
+	}
+	return s;
+    }
+
+    public String getLastColumnString(Woo w){
+	return getColumnString(w, _lastColumn);
+    }
+    
+    public String getRightDiagonalString(Woo w, int row, int column) {
+	String s = "";
+	int z = 0;
+        for (int x = 0; x < w.numRows; x++) { //start from top right of diag
+	    z = column + row - x;     //go to bottom left of diag
+            if (0 <= z && z < w.numColumns) { //make sure z is still in range
+		s = w._board[x][z] + s;
+            }
+        }
+	for (int y = column + row + 1; y < w.numColumns; y++) {
+	    s += "-";
+	}
+	for (int y = z; y > 0; y--) {
+	    s = "-" + s;
 	}
 	return s;
     }
 
     public String getLastRightDiagonalString(Woo w){
+	return getRightDiagonalString(w, _lastRow, _lastColumn);
+    }
+
+    public String getLeftDiagonalString(Woo w, int row, int column){
 	String s = "";
-        for (int x = 0; x < w.numRows; x++) { //start from top right of diag
-            int z = _lastColumn + _lastRow - x;     //go to bottom left of diag
+	int z = 0;
+        for (int x = 0; x < w.numRows; x++) { //start from top left of diag
+            z = column - row + x;     //go to bottom right of diag
             if (0 <= z && z < w.numColumns) { //make sure z is still in range
 		s += w._board[x][z];
             }
         }
+	for (int y = z + 1 ;y < w.numColumns; y++) {
+	    s += "-";
+	}
+	for (int y = column - row; y > 0; y--) {
+	    s = "-" + s;
+	}
 	return s;
     }
+
     public String getLastLeftDiagonalString(Woo w){
-	String s = "";
-        for (int x = 0; x < w.numRows; x++) { //start from top left of diag
-            int z = _lastColumn - _lastRow + x;     //go to bottom right of diag
-            if (0 <= z && z < w.numColumns) { //make sure z is still in range
-		s += w._board[x][z];
-            }
-        }
-	return s;
+	return getLeftDiagonalString(w, _lastRow, _lastColumn);
     }
 
     public String toString() {
 	return name;
     }
 
-    abstract int pick_column(Woo w);
+    abstract int pick_column(Woo w,Player p);
 }

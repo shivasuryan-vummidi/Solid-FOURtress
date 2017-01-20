@@ -2,17 +2,12 @@ import cs1.Keyboard;
 
 public class User extends Player{
 
-    public User(){
-	tokens = 32;
+    public User(String userName, char tokenName){
+	name = userName;
+	token_name = tokenName;
     }
 
-    public User(String name, char token_name){
-        this();
-	this.name = name;
-	this.token_name = token_name;
-    }
-
-    public int pick_column(Woo w) {
+    public int pick_column(Woo w, Player p) {
 	int column = 0;
 	boolean incomplete = true;
 	while (incomplete) {

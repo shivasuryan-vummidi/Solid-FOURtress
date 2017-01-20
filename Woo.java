@@ -4,6 +4,7 @@ public class Woo {
     public char[][] _board;
     private boolean gameOver;
     public int numRows, numColumns;
+    private Player p1, p2;
     
     public void create_board(int rows, int columns) {
 	numRows = rows;
@@ -96,221 +97,169 @@ public class Woo {
 	s += "\nChoose Your Board size: \n";
 	s += "\t1. 6 rows by 7 Columns\n";
 	s += "\t2. 7 rows by 8 Columns\n";
-	s += "\t3. 7 rows by 9 Columns\n";
-	s += "\t4: 7 rows by 10 Columns\n";
-	s += "\t5. 8 rows by 8 Columns\n";
+	s += "\t3. 7 rows by 10 Columns\n";
+	s += "\t4. 8 rows by 8 Columns \n";
 	s += "Selection: ";
 	System.out.print(s);
        	int boardSize = -1;
 	boardSize = Keyboard.readInt();
-	while (boardSize < 0 || boardSize > 5) {
+	while (boardSize < 0 || boardSize > 4) {
 	    System.out.println("Invalid Option. Try Again!");
 	    boardSize = Keyboard.readInt();
 	}
 
 	if (boardSize == 1) create_board(6,7);
 	else if (boardSize == 2) create_board(7,8);
-	else if (boardSize == 3) create_board(7,9);
 	else if (boardSize == 3) create_board(7,10);
 	else if (boardSize == 4) create_board(8,8);
 
-	String name1 = "player1";
-	char char1 = '&';
-	String name2 = "player2";
-	char char2 = '$';
-	int gameMode = 0;
-
-	s = "Player 1: Please enter your name: ";
-	System.out.println(s);
-        name1 = Keyboard.readWord();
-
-	s = "Please enter what char you want to use in the game. It cannot be C or underscore and can only be 1 letter.";
-	System.out.println(s);
-	char1 = Keyboard.readChar();
-	while (char1 == 'C' || char1 == '_'){
-	    s = "You cannot use C or _ as your token name! Please try again: ";
-	    System.out.println(s);
-	    char1 = Keyboard.readChar();
+	s = "What should Player 1 be?\n";
+	s += "\t1. a real person\n";
+	s += "\t2. an EasyComputer (random AI)\n";
+	s += "\t3. a MediumComputer (can block vertical wins)\n";
+	s += "\t4. a HardComputer (can block vertical and horizontal wins)\n";
+	s += "\t5. a TBM (can block vertical, horizontal, and diagonal wins)\n";
+	s += "Selection: ";
+	System.out.print(s);
+	
+	int firstPlayer = -1;
+	firstPlayer = Keyboard.readInt();
+	while (firstPlayer < 0 || firstPlayer > 5) {
+	    System.out.print("Invalid Option. Please try Again: ");
+	    firstPlayer = Keyboard.readInt();
 	}
-	/////////////////////////////////////////////////////////
 
-	s = "Would you like a 2-player game or a 1 vs computer game?\nEnter 0 for 2-Player\nEnter 1 for Computer with Easy Difficulty\nEnter 2 for Computer with Medium Difficulty\nEnter 3 for TBM, the almighty Topher Brown Mykolyk, to make battle with you!";
-	System.out.println(s);
-	boolean mode = true;
-	while (mode) {
-	    gameMode = Keyboard.readInt();
-	    if(gameMode == 0){
-		mode = false;
-		s = "Player 2: Please enter your name: ";
-		System.out.println(s);
+	String name1 = "p1";
+	char char1 = '*';
+	if (firstPlayer == 1) {
+	    System.out.print("Player 1: Please enter your name: ");
+	    name1 = Keyboard.readWord();
+	    while (name1.equals("EasyComputer") || name1.equals("MediumComputer") || name1.equals("HardComputer") || name1.equals("TBM") ||
+		   name1.equals("EasyComputer2") || name1.equals("MediumComputer2") || name1.equals("HardComputer2") || name1.equals("TBM2")) {
+		System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
+		name1 = Keyboard.readWord();
+	    }
+	    System.out.println("Please enter what char you want to use in the game. It cannot be E, M, H, T, -, or _ and can only be 1 letter.");
+	    char1 = Keyboard.readChar();
+	    while (char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
+		System.out.print("You cannot use E, M, H, T, -, or _ as your token name! Please try again: ");
+		char1 = Keyboard.readChar();
+	    }
+	    p1 = new User(name1, char1);
+	}
+	else if (firstPlayer == 2) {
+	    p1 = new EasyComputer();
+	}
+	else if (firstPlayer == 3) {
+	    p1 = new MediumComputer();
+	}
+	else if (firstPlayer == 4) {
+	    p1 = new HardComputer();
+	}
+	else if (firstPlayer == 5) {
+	    p1 = new TBM();
+	}
+
+	s = "What should Player 2 be?\n";
+	s += "\t1. a real person\n";
+	s += "\t2. an EasyComputer (random AI)\n";
+	s += "\t3. a MediumComputer (can block vertical wins)\n";
+	s += "\t4. a HardComputer (can block vertical and horizontal wins)\n";
+	s += "\t5. a TBM (can block vertical, horizontal, and diagonal wins)\n";
+	s += "Selection: ";
+	System.out.print(s);
+
+	int secondPlayer = -1;
+	secondPlayer = Keyboard.readInt();
+	while (secondPlayer < 0 || secondPlayer > 5) {
+	    System.out.print("Invalid Option. Please try Again: ");
+	    secondPlayer = Keyboard.readInt();
+	}
+
+	String name2 = "p2";
+	char char2 = '#';
+	if (secondPlayer == 1) {
+	    System.out.print("Player 2: Please enter your name: ");
+	    name2 = Keyboard.readWord();
+	    while (name2.equals("EasyComputer") || name2.equals("MediumComputer") || name2.equals("HardComputer") || name2.equals("TBM") ||
+		   name2.equals("EasyComputer2") || name2.equals("MediumComputer2") || name2.equals("HardComputer2") || name2.equals("TBM2")) {
+		System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
 		name2 = Keyboard.readWord();
-		while (name1.equals(name2)){
-		    s = "Your name cannot be the same as Player 1! Please try again: ";
-		    System.out.println(s);
-		    name2 = Keyboard.readWord();
-		}
-		s = "Please enter what char you want to use in the game. It can only be 1 letter and cannot be underscore.";
-		System.out.println(s);
+	    }
+	    while (name1.equals(name2)){
+		System.out.print("Your name cannot be the same as Player 1! Please try again: ");
+		name2 = Keyboard.readWord();
+	    }
+	    System.out.println("Please enter what char you want to use in the game. It cannot be C, E, M, H, T, -, or _ and can only be 1 letter.");
+	    char1 = Keyboard.readChar();
+	    while (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ){
+		System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
 		char2 = Keyboard.readChar();
-		while (char2 == '_'){
-		    s = "You cannot use _ as your token name! Please try again: ";
-		    System.out.println(s);
-		    char2 = Keyboard.readChar();
+	    }
+	    while (char2 == char1) {
+		System.out.print("Your token name cannot be the same as Player 1! Please Try again: ");
+		char2 = Keyboard.readChar();
+	    }
+	    p2 = new User(name2, char2);
+	}
+	else if (secondPlayer == 2) {
+	    if (firstPlayer == 2) p2 = new EasyComputer("EasyComputer2",'C');
+	    else p2 = new EasyComputer();
+	}
+	else if (secondPlayer == 3) {
+	    if (firstPlayer == 3) p2 = new MediumComputer("MediumComputer2",'C');
+	    else p2 = new MediumComputer();
+	}
+	else if (secondPlayer == 4) {
+	    if (firstPlayer == 4) p2 = new HardComputer("HardComputer2",'C');
+	    else p2 = new HardComputer();
+	}
+	else if (secondPlayer == 5) {
+	    if (firstPlayer == 5) p2 = new TBM("TMB2",'C');
+	    else p2 = new TBM();
+	}
+	
+	p1.tokens = (numRows * numColumns) / 2;
+	p2.tokens = (numRows * numColumns) / 2;
+	while (!gameOver) {
+	    int col1 = -1;
+	    boolean incomplete = true;
+	    while (incomplete) {
+		col1 = p1.pick_column(this, p2);
+		if(is_column_full(col1)){
+		    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
 		}
-		while (char2 == char1){
-		    s = "You cannot use the same token as Player 1! Please try again: ";
-		    System.out.println(s);
-		    char2 = Keyboard.readChar();
-		}
-
-		User player1 = new User(name1, char1);
-		player1.tokens = (numRows * numColumns) / 2;
-		User player2 = new User(name2, char2);
-		player2.tokens = (numRows * numColumns) / 2;
-		int col1 = -1;
-		int col2 = -1;
-		while (!gameOver) {
-		    boolean incomplete = true;
-		    while (incomplete) {
-			col1 = player1.pick_column(this);
-			if(is_column_full(col1)){
-			    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
-			}
-			else {
-			    player1.drop_token(col1,this);
-			    incomplete = false;
-			}
-		    }
-		    System.out.println(printBoard());
-		    System.out.println("Player 1 last row #: " + player1._lastRow);
-		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1,player2);
-		    if (gameOver == true) break;
-		    incomplete = true;
-		    while (incomplete) {
-			col2 = player2.pick_column(this);
-			if(is_column_full(col2)){
-			    System.out.println("ERROR: Please try again. Column " + col2 + " is full.");
-			}
-			else {
-			    player2.drop_token(col2,this);
-			    incomplete = false;
-			}
-		    }
-		    System.out.println(printBoard());
-		    System.out.println("Player 2 last row #: " + player2._lastRow);
-		    System.out.println("Player 2 last column #: " + player2._lastColumn);
-		    check_winner(player2,player1);
+		else {
+		    p1.drop_token(col1,this);
+		    incomplete = false;
 		}
 	    }
-
-	    /////
-	    //Player vs computer - EASY
-	    /////
-	    else if(gameMode == 1){
-		mode = false;
-		User player1 = new User(name1, char1);
-		player1.tokens = (numRows * numColumns) / 2;
-		Computer computer1  = new Computer();
-		computer1.tokens = (numRows * numColumns) / 2;
-		int col1 = -1;
-		int col2 = -1;
-		while (!gameOver) {
-		    boolean incomplete = true;
-		    while (incomplete) {
-			col1 = player1.pick_column(this);
-			if(is_column_full(col1)){
-			    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
-			}
-			else {
-			    player1.drop_token(col1,this);
-			    incomplete = false;
-			}
-		    }
-		    System.out.println(printBoard());
-		    System.out.println("Player 1 last row #: " + player1._lastRow);
-		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1,computer1);
-		    if (gameOver == true) break;
-		    col2 = computer1.pick_column(this);
-		    computer1.drop_token(col2,this);
-		    System.out.println(printBoard());
-		    System.out.println("Computer last row #: " + computer1._lastRow);
-		    System.out.println("Computer last column #: " + computer1._lastColumn);
-		    check_winner(computer1,player1);
+	    System.out.println(printBoard());
+	    System.out.println("DIAGNOSTIC");
+	    System.out.println("Player 1 last row #: " + p1._lastRow);
+	    System.out.println("Player 1 last column #: " + p1._lastColumn);
+	    check_winner(p1,p2);
+	    if (gameOver == true) break;
+	    int col2 = -1;
+	    incomplete = true;
+	    while (incomplete) {
+		col2 = p2.pick_column(this, p1);
+		if(is_column_full(col2)){
+		    System.out.println("ERROR: Please try again. Column " + col2 + " is full.");
+		}
+		else {
+		    p2.drop_token(col2,this);
+		    incomplete = false;
 		}
 	    }
-	    else if (gameMode == 2){
-		mode = false;
-		User player1 = new User(name1, char1);
-		player1.tokens = (numRows * numColumns) / 2;
-		HardComputer computer1  = new HardComputer();
-		computer1.tokens = (numRows * numColumns) / 2;
-		int col1 = -1;
-		int col2 = -1;
-		while (!gameOver) {
-		    boolean incomplete = true;
-		    while (incomplete) {
-			col1 = player1.pick_column(this);
-			if(is_column_full(col1)){
-			    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
-			}
-			else {
-			    player1.drop_token(col1,this);
-			    incomplete = false;
-			}
-		    }
-		    System.out.println(printBoard());
-		    System.out.println("Player 1 last row #: " + player1._lastRow);
-		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1,computer1);
-		    if (gameOver == true) break;
-		    col2 = computer1.pick_column(this);
-		    computer1.drop_token(col2,this);
-		    System.out.println(printBoard());
-		    System.out.println("Computer last row #: " + computer1._lastRow);
-		    System.out.println("Computer last column #: " + computer1._lastColumn);
-		    check_winner(computer1,player1);
-		}
-	    }
-	    else if (gameMode == 3){
-		mode = false;
-		User player1 = new User(name1, char1);
-		player1.tokens = (numRows * numColumns) / 2;
-	        TBM computer1  = new TBM();
-		computer1.tokens = (numRows * numColumns) / 2;
-		int col1 = -1;
-		int col2 = -1;
-		while (!gameOver) {
-		    boolean incomplete = true;
-		    while (incomplete) {
-			col1 = player1.pick_column(this);
-			if(is_column_full(col1)){
-			    System.out.println("ERROR: Please try again. Column " + col1 + " is full.");
-			}
-			else {
-			    player1.drop_token(col1,this);
-			    incomplete = false;
-			}
-		    }
-		    System.out.println(printBoard());
-		    System.out.println("Player 1 last row #: " + player1._lastRow);
-		    System.out.println("Player 1 last column #: " + player1._lastColumn);
-		    check_winner(player1,computer1);
-		    if (gameOver == true) break;
-		    col2 = computer1.pick_column(this);
-		    computer1.drop_token(col2,this);
-		    System.out.println(printBoard());
-		    System.out.println("TBM last row #: " + computer1._lastRow);
-		    System.out.println("TBM last column #: " + computer1._lastColumn);
-		    check_winner(computer1,player1);
-		}
-	    }
-	    else{
-		System.out.println("This gamemode is nonexistent. Try Again");
-	    }
+	    System.out.println(printBoard());
+	    System.out.println("DIAGNOSTIC");
+	    System.out.println("Player 2 last row #: " + p2._lastRow);
+	    System.out.println("Player 2 last column #: " + p2._lastColumn);
+	    check_winner(p2,p1);
 	}
     }
+
     //////////////////////////////////////////////////////
 	
     public static void main(String[] args){
