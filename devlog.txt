@@ -11,11 +11,11 @@ Connect Four
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc we figured out how to get diagonals.
+wow we so BOSS bc we figured out how to get diagonals. For LeftDiag start from top left go to bottom right. For RightDiag start from top right go to bottom left. 
 
-wow we so BOSS bc we figured out how to do horizontal AI.
+wow we so BOSS bc we figured out how to do horizontal AI. We were able to do so by checking the row under to see if it the possible win can be blocked.
 
-wow we so BOSS bc we figured out how to do diagonal AI.
+wow we so BOSS bc we figured out how to do diagonal AI. We were able to do so by checking the diagonal under to see if it the possible win can be blocked. We also had to make the diagonal obtaining functions have placeholders for slots that are "out of the board".
 
 wow we so BOSS bc...
 
@@ -30,21 +30,19 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed the board from a 2D string array to a char bc it
-forces the user to use only one character. Otherwise _board would
-be printed improperly.
+we changed the board from a 2D string array to a char bc it forces the user to use only one character. Otherwise _board would be printed improperly.
 
 we decided to scrap AI because of its difficulty.
 
-we decided to actually do AI after being enlightened.
+we decided to actually do AI after being enlightened and realized we can check the row or diagonal below.
 
-we decided to implement AI vs. AI
+we decided to implement AI vs. AI. We had done so because it was a simple change. We just had to ask what player 1 should be.
 
 we changed ___ to ___ bc...
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AI isn't impossible.
+AI is hard, but AI isn't impossible. We also realized that AI is always the last thing you should be doing.
 ||||||||||||||||||||||||||||||||||||||||||
 
 
