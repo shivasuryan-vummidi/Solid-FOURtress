@@ -215,7 +215,7 @@ public class Woo {
 	    else p2 = new HardComputer();
 	}
 	else if (secondPlayer == 5) {
-	    if (firstPlayer == 5) p2 = new TBM("TMB2",'C');
+	    if (firstPlayer == 5) p2 = new TBM("TBM2",'C');
 	    else p2 = new TBM();
 	}
 	
