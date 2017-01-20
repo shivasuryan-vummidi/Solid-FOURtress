@@ -18,7 +18,7 @@ public class Woo implements ConnectFour{
 	}
     }
     
-    //calls is_win
+    //calls is_win on the first input & checks for a draw
     public void check_winner(Player p1, Player p2){
 	if(p1.is_win(this)){
 	    System.out.println("Player " + p1 + " has won!");
@@ -33,20 +33,23 @@ public class Woo implements ConnectFour{
 	}
     }
 
-    //DEFAULT CONSTRUCTOR
+    //DEFAULT CONSTRUCTOR - Starts newgame
     public Woo(){
 	gameOver = false;
 	newGame();
     }
 
+    //checks if the top slot is empty or not
     public boolean is_column_full(int column){
         return(_board[0][column] != '_');
     }
 
+    //helper method to set a slot on the board
     public void set(int row, int column, char x) {
 	_board[row][column] = x;
     }
     
+    //checks for the lowest empty spot to drop a token
     public void drop(int column, Player p){
 	int row = 0;
 	for (int x = 0; x < numRows; x++) {
@@ -59,6 +62,7 @@ public class Woo implements ConnectFour{
 	set(row,column,p.token_name);
     }
 
+    //prints the board
     public String printBoard(){
 	String s = "  ";
 	for (int x = 0; x < numColumns; x++ ) {
@@ -92,7 +96,7 @@ public class Woo implements ConnectFour{
 	return s;
     }
     
-
+    //starts a newgame
     public void newGame(){
 	String s = "";
 	s = "Welcome to Connect Four!\n";
