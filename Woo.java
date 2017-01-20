@@ -139,10 +139,10 @@ public class Woo {
 		System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
 		name1 = Keyboard.readWord();
 	    }
-	    System.out.println("Please enter what char you want to use in the game. It cannot be E, M, H, T, -, or _ and can only be 1 letter.");
+	    System.out.println("Please enter what char you want to use in the game. It cannot be C, E, M, H, T, -, or _ and can only be 1 letter.");
 	    char1 = Keyboard.readChar();
-	    while (char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
-		System.out.print("You cannot use E, M, H, T, -, or _ as your token name! Please try again: ");
+	    while (char1 == 'C' || char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
+		System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
 		char1 = Keyboard.readChar();
 	    }
 	    p1 = new User(name1, char1);
@@ -191,7 +191,7 @@ public class Woo {
 		name2 = Keyboard.readWord();
 	    }
 	    System.out.println("Please enter what char you want to use in the game. It cannot be C, E, M, H, T, -, or _ and can only be 1 letter.");
-	    char1 = Keyboard.readChar();
+	    char2 = Keyboard.readChar();
 	    while (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ){
 		System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
 		char2 = Keyboard.readChar();
@@ -234,6 +234,14 @@ public class Woo {
 		    incomplete = false;
 		}
 	    }
+	    System.out.println(p1 + " is currently thinking...");
+	    if (firstPlayer != 1) {
+		try {
+		    Thread.sleep(1000 + (int) Math.random()*2000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+	    }
 	    System.out.println(printBoard());
 	    System.out.println("DIAGNOSTIC");
 	    System.out.println("Player 1 last row #: " + p1._lastRow);
@@ -250,6 +258,14 @@ public class Woo {
 		else {
 		    p2.drop_token(col2,this);
 		    incomplete = false;
+		}
+	    }
+	    System.out.println(p2 + " is currently thinking...");
+	    if (secondPlayer != 1) {
+		try {
+		    Thread.sleep(1000 + (int) Math.random()*2000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
 		}
 	    }
 	    System.out.println(printBoard());
