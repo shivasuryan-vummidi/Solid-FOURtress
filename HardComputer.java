@@ -1,15 +1,18 @@
 public class HardComputer extends MediumComputer {
 
+    //default constructor for HardComputer
     public HardComputer(){
 	name = "HardComputer";
 	token_name = 'H';
     }
 
+    //overloaded constructor for HardComputer that takes userName and tokenName input
     public HardComputer(String userName, char tokenName){
 	name = userName;
 	token_name = tokenName;
     }
 
+    //first checks for a possible horizontal win to block, then vertical, otherwise random slot
     public int pick_column(Woo w, Player p) {
 	String almost1 = "_" + p.token_name + p.token_name + p.token_name;
 	String almost2 = p.token_name + almost1.substring(0,3);
