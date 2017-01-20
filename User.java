@@ -2,11 +2,19 @@ import cs1.Keyboard;
 
 public class User extends Player{
 
+    //default constructor for User
+    public User(){
+	name = "User";
+	token_name = "U";
+    }
+
+    //overloaded constructor for User that takes userName and tokenName input
     public User(String userName, char tokenName){
 	name = userName;
 	token_name = tokenName;
     }
 
+    //asks for slot to drop, asks again if invalid
     public int pick_column(Woo w, Player p) {
 	int column = 0;
 	boolean incomplete = true;
