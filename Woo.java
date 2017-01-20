@@ -234,8 +234,8 @@ public class Woo {
 		    incomplete = false;
 		}
 	    }
-	    System.out.println(p1 + " is currently thinking...");
 	    if (firstPlayer != 1) {
+		System.out.println(p1 + " is currently thinking...");
 		try {
 		    Thread.sleep(1000 + (int) Math.random()*2000);
 		} catch(InterruptedException ex) {
@@ -260,8 +260,8 @@ public class Woo {
 		    incomplete = false;
 		}
 	    }
-	    System.out.println(p2 + " is currently thinking...");
 	    if (secondPlayer != 1) {
+		System.out.println(p2 + " is currently thinking...");
 		try {
 		    Thread.sleep(1000 + (int) Math.random()*2000);
 		} catch(InterruptedException ex) {
