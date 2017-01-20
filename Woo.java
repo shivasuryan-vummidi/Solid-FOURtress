@@ -275,9 +275,9 @@ public class Woo implements ConnectFour{
 		}
 	    }
 	    System.out.println(printBoard());
-	    System.out.println("DIAGNOSTIC");
+	    /*	    System.out.println("DIAGNOSTIC");
 	    System.out.println("Player 2 last row #: " + p2._lastRow);
-	    System.out.println("Player 2 last column #: " + p2._lastColumn);
+	    System.out.println("Player 2 last column #: " + p2._lastColumn);*/
 	    check_winner(p2,p1);
 	}
     }
