@@ -1,11 +1,12 @@
 import cs1.Keyboard;
-public class Woo {
+public class Woo implements ConnectFour{
     
     public char[][] _board;
     private boolean gameOver;
     public int numRows, numColumns;
     private Player p1, p2;
     
+    //Creates board with rows # of rows and columns # of columns
     public void create_board(int rows, int columns) {
 	numRows = rows;
 	numColumns = columns;
@@ -16,7 +17,8 @@ public class Woo {
 	    }
 	}
     }
-
+    
+    //calls is_win
     public void check_winner(Player p1, Player p2){
 	if(p1.is_win(this)){
 	    System.out.println("Player " + p1 + " has won!");
