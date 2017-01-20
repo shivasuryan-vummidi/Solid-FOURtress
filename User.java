@@ -5,7 +5,7 @@ public class User extends Player{
     //default constructor for User
     public User(){
 	name = "User";
-	token_name = "U";
+	token_name = 'U';
     }
 
     //overloaded constructor for User that takes userName and tokenName input
