@@ -1,36 +1,40 @@
 public abstract class Player {
 
-    protected int tokens;
-    protected String name;
-    protected char token_name;
-    protected int _lastRow;
-    protected int _lastColumn;
+    protected int tokens;//number of tokens that a player get
+    protected String name;//the name of the Player
+    protected char token_name;//the token that the Player is going to use
+    protected int _lastRow;//the last row that the Player has dropped the token in
+    protected int _lastColumn;//the last column that the Player has dropped the token in
 
+    //Any player can drop a token in desired column
     public void drop_token(int column,Woo w){
 	w.drop(column, this);
 	tokens -= 1;
     }
 
+    //Checks if the Player has won the game
     public boolean is_win(Woo w){
 	String win = "";
 	for (int x = 0; x < 4;x++) {
 	    win += token_name;
 	}
-	System.out.println("DIAGNOSTIC");
+	/*	System.out.println("DIAGNOSTIC");
 	System.out.println("Last Row: " + getLastRowString(w));
 	System.out.println("Last Column: " + getLastColumnString(w));
 	System.out.println("Last Right Diag: " + getLastRightDiagonalString(w));
-	System.out.println("Last Left Diag: " + getLastLeftDiagonalString(w));
+	System.out.println("Last Left Diag: " + getLastLeftDiagonalString(w));*/
 	return hasSubString(getLastRowString(w),win) ||
 	    hasSubString(getLastColumnString(w),win) ||
 	    hasSubString(getLastRightDiagonalString(w),win) ||
 	    hasSubString(getLastLeftDiagonalString(w),win);
     }
 
+    //Helper method for win check algorithm
     public boolean hasSubString(String str, String lookingFor) {
 	return str.indexOf(lookingFor) != -1;
     }
 
+    //Get the String version of all the tokens in the desired row
     public String getRowString(Woo w, int row) {
 	String s = "";
 	if (row > w.numRows-1) {
@@ -47,10 +51,12 @@ public abstract class Player {
 	return s;
     }
 
+    //Get the String version of all the tokens in the last row that the Player has placed the token in
     public String getLastRowString(Woo w){
 	return getRowString(w, _lastRow);
     }
 
+    //Get the String version of all the tokens in the desired column
     public String getColumnString(Woo w, int column) {
 	String s = "";
 	for (int x = 0; x < w.numRows; x++){
@@ -59,10 +65,12 @@ public abstract class Player {
 	return s;
     }
 
+    //Get the String version of all the tokens in the last column that the Player has placed the token in
     public String getLastColumnString(Woo w){
 	return getColumnString(w, _lastColumn);
     }
     
+    //Get the String version of all the tokens for the right diagonal that is associated with the desired row and column
     public String getRightDiagonalString(Woo w, int row, int column) {
 	String s = "";
 	int z = 0;
@@ -81,10 +89,12 @@ public abstract class Player {
 	return s;
     }
 
+    //Get the String version of all the tokens for the right diagonal that is associated with the row and column of the token that was last placed by the Player
     public String getLastRightDiagonalString(Woo w){
 	return getRightDiagonalString(w, _lastRow, _lastColumn);
     }
 
+    //Get the String version of all the tokens for the left diagonal that is associated with the desired row and column
     public String getLeftDiagonalString(Woo w, int row, int column){
 	String s = "";
 	int z = 0;
@@ -103,13 +113,16 @@ public abstract class Player {
 	return s;
     }
 
+    //Get the String version of all the tokens for the left diagonal that is associated with the row and column of the token that was last placed by the Player
     public String getLastLeftDiagonalString(Woo w){
 	return getLeftDiagonalString(w, _lastRow, _lastColumn);
     }
 
+    //overwritten toString method to return the name of the Player
     public String toString() {
 	return name;
     }
 
+    //the pick column algorithm will be defined by the subclasses based on their difficulties
     abstract int pick_column(Woo w,Player p);
 }
