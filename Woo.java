@@ -96,19 +96,21 @@ public class Woo {
 	s += "\nChoose Your Board size: \n";
 	s += "\t1. 6 rows by 7 Columns\n";
 	s += "\t2. 7 rows by 8 Columns\n";
-	s += "\t3. 7 rows by 10 Columns\n";
-	s += "\t4. 8 rows by 8 Columns \n";
+	s += "\t3. 7 rows by 9 Columns\n";
+	s += "\t4: 7 rows by 10 Columns\n";
+	s += "\t5. 8 rows by 8 Columns\n";
 	s += "Selection: ";
 	System.out.print(s);
        	int boardSize = -1;
 	boardSize = Keyboard.readInt();
-	while (boardSize < 0 || boardSize > 4) {
+	while (boardSize < 0 || boardSize > 5) {
 	    System.out.println("Invalid Option. Try Again!");
 	    boardSize = Keyboard.readInt();
 	}
 
 	if (boardSize == 1) create_board(6,7);
 	else if (boardSize == 2) create_board(7,8);
+	else if (boardSize == 3) create_board(7,9);
 	else if (boardSize == 3) create_board(7,10);
 	else if (boardSize == 4) create_board(8,8);
 
