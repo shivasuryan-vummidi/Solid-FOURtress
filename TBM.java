@@ -85,7 +85,7 @@ public class TBM extends HardComputer {
     }
 
     //stragecially decides where to offensively place a token
-    //diagonal offense
+    //diagonal offense, horizontal, vertical
     public int offense(Woo w, Player p) {
 	String poss1 = "_" + String.valueOf(token_name) + String.valueOf(token_name) + String.valueOf(token_name); //_***
 	String poss2 = String.valueOf(token_name) + "_" + String.valueOf(token_name) + String.valueOf(token_name); //*_**
@@ -105,8 +105,6 @@ public class TBM extends HardComputer {
 	    for (int y = 0; y < w.numRows;y++) {
 		String rDiag = p.getRightDiagonalString(w,x,y);
 		String underRDiag = p.getRightDiagonalString(w,x,y+1);
-		String lDiag = p.getLeftDiagonalString(w,x,y);
-		String underLDiag = p.getLeftDiagonalString(w,x,y-1);
 		//RIGHT DIAGONAL
 		if(hasSubString(rDiag,poss1)) {
 		    int missingSlot = rDiag.indexOf(poss1);
@@ -132,6 +130,78 @@ public class TBM extends HardComputer {
 			return missingSlot;
 		    }
 		}
+	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    for (int y = 0; y < w.numRows;y++) {
+		String lDiag = p.getLeftDiagonalString(w,x,y);
+		String underLDiag = p.getLeftDiagonalString(w,x,y-1);
+		//LEFT DIAGONAL
+		if(hasSubString(lDiag,poss1)) {
+		    int missingSlot = lDiag.indexOf(poss1);
+		    if (underLDiag.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+		if(hasSubString(lDiag,poss2)) {
+		    int missingSlot = lDiag.indexOf(poss2) + 1;
+		    if (underLDiag.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+		if(hasSubString(lDiag,poss3)) {
+		    int missingSlot = lDiag.indexOf(poss3) + 2;
+		    if (underLDiag.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+		if(hasSubString(lDiag,poss4)) {
+		    int missingSlot = lDiag.indexOf(poss4) + 3;
+		    if (underLDiag.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	}
+	for (int x = 0; x < w.numRows; x++) {
+	    String Row = p.getRowString(w,x);
+	    String underRow = p.getRowString(w,x+1);
+	    if(hasSubString(Row,poss1)) {
+		int missingSlot = Row.indexOf(poss1);
+		if (underRow.charAt(missingSlot) != '_') {
+		    return missingSlot;
+		}
+	    }
+	    if(hasSubString(Row,poss2)) {
+		int missingSlot = Row.indexOf(poss2) + 1;
+		if (underRow.charAt(missingSlot) != '_') {
+		    return missingSlot;
+		}
+	    }
+	    if(hasSubString(Row,poss3)) {
+		int missingSlot = Row.indexOf(poss3) + 2;
+		if (underRow.charAt(missingSlot) != '_') {
+		    return missingSlot;
+		}
+	    }
+	    if(hasSubString(Row,poss4)) {
+		int missingSlot = Row.indexOf(poss4) + 3;
+		if (underRow.charAt(missingSlot) != '_') {
+		    return missingSlot;
+		}
+	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    String Col = getColumnString(w,x);
+	    if (hasSubString(Col, poss1)) {
+		return x;
+	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    for (int y = 0; y < w.numRows;y++) {
+		String rDiag = p.getRightDiagonalString(w,x,y);
+		String underRDiag = p.getRightDiagonalString(w,x,y+1);
+		//RIGHT DIAGONAL
 		if(hasSubString(rDiag,poss5)) {
 		    int[] missingSlots = new int[2];
 		    missingSlots[0] = rDiag.indexOf(poss5);
@@ -198,79 +268,13 @@ public class TBM extends HardComputer {
 			}
 		    }
 		}	    
-		if(hasSubString(rDiag,poss11)) {
-		    int[] missingSlots = new int[3];
-		    missingSlots[0] = rDiag.indexOf(poss11);
-		    missingSlots[1] = rDiag.indexOf(poss11) + 1;
-		    missingSlots[2] = rDiag.indexOf(poss11) + 2;
-		    missingSlots = randomizeArray(missingSlots);
-		    for (int missingSlot : missingSlots) {
-			if (underRDiag.charAt(missingSlot) != '_') {
-			    return missingSlot;
-			}
-		    }
-		}
-		if(hasSubString(rDiag,poss12)) {
-		    int[] missingSlots = new int[3];
-		    missingSlots[0] = rDiag.indexOf(poss12);
-		    missingSlots[1] = rDiag.indexOf(poss12) + 1;
-		    missingSlots[2] = rDiag.indexOf(poss12) + 3;
-		    missingSlots = randomizeArray(missingSlots);
-		    for (int missingSlot : missingSlots) {
-			if (underRDiag.charAt(missingSlot) != '_') {
-			    return missingSlot;
-			}
-		    }
-		}
-		if(hasSubString(rDiag,poss13)) {
-		    int[] missingSlots = new int[3];
-		    missingSlots[0] = rDiag.indexOf(poss13);
-		    missingSlots[1] = rDiag.indexOf(poss13) + 2;
-		    missingSlots[2] = rDiag.indexOf(poss13) + 3;
-		    missingSlots = randomizeArray(missingSlots);
-		    for (int missingSlot : missingSlots) {
-			if (underRDiag.charAt(missingSlot) != '_') {
-			    return missingSlot;
-			}
-		    }
-		}
-		if(hasSubString(rDiag,poss14)) {
-		    int[] missingSlots = new int[3];
-		    missingSlots[0] = rDiag.indexOf(poss14) + 1;
-		    missingSlots[1] = rDiag.indexOf(poss14) + 2;
-		    missingSlots[2] = rDiag.indexOf(poss14) + 3;
-		    missingSlots = randomizeArray(missingSlots);
-		    for (int missingSlot : missingSlots) {
-			if (underRDiag.charAt(missingSlot) != '_') {
-			    return missingSlot;
-			}
-		    }
-		}
+	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    for (int y = 0; y < w.numRows;y++) {
+		String lDiag = p.getLeftDiagonalString(w,x,y);
+		String underLDiag = p.getLeftDiagonalString(w,x,y+1);
 		//LEFT DIAGONAL
-		if(hasSubString(lDiag,poss1)) {
-		    int missingSlot = lDiag.indexOf(poss1);
-		    if (underLDiag.charAt(missingSlot) != '_') {
-			return missingSlot;
-		    }
-		}
-		if(hasSubString(lDiag,poss2)) {
-		    int missingSlot = lDiag.indexOf(poss2) + 1;
-		    if (underLDiag.charAt(missingSlot) != '_') {
-			return missingSlot;
-		    }
-		}
-		if(hasSubString(lDiag,poss3)) {
-		    int missingSlot = lDiag.indexOf(poss3) + 2;
-		    if (underLDiag.charAt(missingSlot) != '_') {
-			return missingSlot;
-		    }
-		}
-		if(hasSubString(lDiag,poss4)) {
-		    int missingSlot = lDiag.indexOf(poss4) + 3;
-		    if (underLDiag.charAt(missingSlot) != '_') {
-			return missingSlot;
-		    }
-		}
 		if(hasSubString(lDiag,poss5)) {
 		    int[] missingSlots = new int[2];
 		    missingSlots[0] = lDiag.indexOf(poss5);
@@ -281,7 +285,7 @@ public class TBM extends HardComputer {
 			    return missingSlot;
 			}
 		    }
-		}
+		}		
 		if(hasSubString(lDiag,poss6)) {
 		    int[] missingSlots = new int[2];
 		    missingSlots[0] = lDiag.indexOf(poss6);
@@ -337,6 +341,138 @@ public class TBM extends HardComputer {
 			}
 		    }
 		}	    
+	    }
+	}
+	for (int x = 0; x < w.numRows; x++) {
+	    String Row = p.getRowString(w,x);
+	    String underRow = p.getRowString(w,x+1);
+	    if(hasSubString(Row,poss5)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss5);
+		missingSlots[1] = Row.indexOf(poss5) + 1;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss6)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss6);
+		missingSlots[1] = Row.indexOf(poss6) + 2;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss7)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss7);
+		missingSlots[1] = Row.indexOf(poss7) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss8)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss8) + 1;
+		missingSlots[1] = Row.indexOf(poss8) + 2;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss9)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss9) + 1;
+		missingSlots[1] = Row.indexOf(poss9) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss10)) {
+		int[] missingSlots = new int[2];
+		missingSlots[0] = Row.indexOf(poss10) + 2;
+		missingSlots[1] = Row.indexOf(poss10) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }	    
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    for (int y = 0; y < w.numRows;y++) {
+		String rDiag = p.getRightDiagonalString(w,x,y);
+		String underRDiag = p.getRightDiagonalString(w,x,y+1);
+		//RIGHT DIAGONAL
+		if(hasSubString(rDiag,poss11)) {
+		    int[] missingSlots = new int[3];
+		    missingSlots[0] = rDiag.indexOf(poss11);
+		    missingSlots[1] = rDiag.indexOf(poss11) + 1;
+		    missingSlots[2] = rDiag.indexOf(poss11) + 2;
+		    missingSlots = randomizeArray(missingSlots);
+		    for (int missingSlot : missingSlots) {
+			if (underRDiag.charAt(missingSlot) != '_') {
+			    return missingSlot;
+			}
+		    }
+		}
+		if(hasSubString(rDiag,poss12)) {
+		    int[] missingSlots = new int[3];
+		    missingSlots[0] = rDiag.indexOf(poss12);
+		    missingSlots[1] = rDiag.indexOf(poss12) + 1;
+		    missingSlots[2] = rDiag.indexOf(poss12) + 3;
+		    missingSlots = randomizeArray(missingSlots);
+		    for (int missingSlot : missingSlots) {
+			if (underRDiag.charAt(missingSlot) != '_') {
+			    return missingSlot;
+			}
+		    }
+		}
+		if(hasSubString(rDiag,poss13)) {
+		    int[] missingSlots = new int[3];
+		    missingSlots[0] = rDiag.indexOf(poss13);
+		    missingSlots[1] = rDiag.indexOf(poss13) + 2;
+		    missingSlots[2] = rDiag.indexOf(poss13) + 3;
+		    missingSlots = randomizeArray(missingSlots);
+		    for (int missingSlot : missingSlots) {
+			if (underRDiag.charAt(missingSlot) != '_') {
+			    return missingSlot;
+			}
+		    }
+		}
+		if(hasSubString(rDiag,poss14)) {
+		    int[] missingSlots = new int[3];
+		    missingSlots[0] = rDiag.indexOf(poss14) + 1;
+		    missingSlots[1] = rDiag.indexOf(poss14) + 2;
+		    missingSlots[2] = rDiag.indexOf(poss14) + 3;
+		    missingSlots = randomizeArray(missingSlots);
+		    for (int missingSlot : missingSlots) {
+			if (underRDiag.charAt(missingSlot) != '_') {
+			    return missingSlot;
+			}
+		    }
+		}
+	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    for (int y = 0; y < w.numRows;y++) {
+		String lDiag = p.getLeftDiagonalString(w,x,y);
+		String underLDiag = p.getLeftDiagonalString(w,x,y+1);
+		//LEFT DIAGONAL
 		if(hasSubString(lDiag,poss11)) {
 		    int[] missingSlots = new int[3];
 		    missingSlots[0] = lDiag.indexOf(poss11);
@@ -387,6 +523,65 @@ public class TBM extends HardComputer {
 		}		
 	    }
 	}
+	for (int x = 0; x < w.numRows; x++) {
+	    String Row = p.getRowString(w,x);
+	    String underRow = p.getRowString(w,x+1);
+	    if(hasSubString(Row,poss11)) {
+		int[] missingSlots = new int[3];
+		missingSlots[0] = Row.indexOf(poss11);
+		missingSlots[1] = Row.indexOf(poss11) + 1;
+		missingSlots[2] = Row.indexOf(poss11) + 2;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss12)) {
+		int[] missingSlots = new int[3];
+		missingSlots[0] = Row.indexOf(poss12);
+		missingSlots[1] = Row.indexOf(poss12) + 1;
+		missingSlots[2] = Row.indexOf(poss12) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss13)) {
+		int[] missingSlots = new int[3];
+		missingSlots[0] = Row.indexOf(poss13);
+		missingSlots[1] = Row.indexOf(poss13) + 2;
+		missingSlots[2] = Row.indexOf(poss13) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    if(hasSubString(Row,poss14)) {
+		int[] missingSlots = new int[3];
+		missingSlots[0] = Row.indexOf(poss14) + 1;
+		missingSlots[1] = Row.indexOf(poss14) + 2;
+		missingSlots[2] = Row.indexOf(poss14) + 3;
+		missingSlots = randomizeArray(missingSlots);
+		for (int missingSlot : missingSlots) {
+		    if (underRow.charAt(missingSlot) != '_') {
+			return missingSlot;
+		    }
+		}
+	    }
+	    
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    String Col = getColumnString(w,x);
+	    if (hasSubString(Col, poss5) || hasSubString(Col, poss11)) {
+		return x;
+	    }
+	}
 	return -1;
     }
     
@@ -395,8 +590,7 @@ public class TBM extends HardComputer {
 	int choice = defense(w, p); //diagonal defense
 	if (choice == -1) choice = secondaryDefense(w, p); //horizontal defense
 	if (choice == -1) choice = super.secondaryDefense(w, p); //vertical defense
-	if (choice == -1) choice = offense(w, p); //diagonal offense
-	if (choice == -1) choice = super.offense(w, p); //horizontal offense, vertical offense
+	if (choice == -1) choice = offense(w, p); //diagonal offense, horizontal offense, vertical offense
 	if (choice == -1) choice = super.pick_column(w, p); //no other option
 	return choice;
     }
