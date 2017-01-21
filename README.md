@@ -33,10 +33,10 @@ However, if the board becomes full and nobody has yet to win, it is a draw.
    * 8 rows by 8 Columns
 7. You will be asked what kind of player Player 1 will be. You have these options:
    * a real person
-   * an EasyComputer (random AI)
-   * a MediumComputer (can block vertical wins)
-   * a HardComputer (can block vertical and horizontal wins)
-   * a TBM (can block vertical, horizontal, and diagonal wins)
+   * an EasyComputer (random AI: No defense neither offense)
+   * a MediumComputer (vertical defense, horizontal offense, vertical offense)
+   * a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense
+   * a TBM (diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)
 8. If you choose a real person, you will be asked for your name and you need insert it. You may not choose from these reserved names:
    * EasyComputer
    * EasyComputer2
@@ -57,11 +57,10 @@ However, if the board becomes full and nobody has yet to win, it is a draw.
    * Note: You must ONLY pick 1 letter.
 10. You will be aked what kind of player Player 2 will be. You have these options: 
    * a real person
-   * an EasyComputer (random AI)
-   * a MediumComputer (can block vertical wins)
-   * a HardComputer (can block vertical and horizontal wins)
-   * a TBM (can block vertical, horizontal, and diagonal wins)
-   
+   * an EasyComputer (random AI: No defense neither offense)
+   * a MediumComputer (vertical defense, horizontal offense, vertical offense)
+   * a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense
+   * a TBM (diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)
 11. If you select another player, a prompt will be shown asking for their name, and their token.
    * Two players may **not** have the same name or the same token, in order to reduce confusion while playing.
 12. You proceed to play ConnectFour
