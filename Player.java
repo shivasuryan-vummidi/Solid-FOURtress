@@ -9,7 +9,6 @@ public abstract class Player {
     //Any player can drop a token in desired column
     public void drop_token(int column,Woo w){
 	w.drop(column, this);
-	tokens -= 1;
     }
 
     //Checks if the Player has won the game
@@ -18,11 +17,6 @@ public abstract class Player {
 	for (int x = 0; x < 4;x++) {
 	    win += token_name;
 	}
-	/*	System.out.println("DIAGNOSTIC");
-	System.out.println("Last Row: " + getLastRowString(w));
-	System.out.println("Last Column: " + getLastColumnString(w));
-	System.out.println("Last Right Diag: " + getLastRightDiagonalString(w));
-	System.out.println("Last Left Diag: " + getLastLeftDiagonalString(w));*/
 	return hasSubString(getLastRowString(w),win) ||
 	    hasSubString(getLastColumnString(w),win) ||
 	    hasSubString(getLastRightDiagonalString(w),win) ||

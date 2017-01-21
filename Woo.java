@@ -59,12 +59,13 @@ public class Woo implements ConnectFour{
 	}
 	p._lastRow = row;
 	p._lastColumn = column;
+	p.tokens -= 1;
 	set(row,column,p.token_name);
     }
 
-    //prints the board
+    //string representation of  the board
     public String printBoard(){
-	String s = "  ";
+	String s = "\n  ";
 	for (int x = 0; x < numColumns; x++ ) {
 	    s += x + " ";
 	}
@@ -107,11 +108,14 @@ public class Woo implements ConnectFour{
 	s += "\t4. 8 rows by 8 Columns \n";
 	s += "Selection: ";
 	System.out.print(s);
+	Boolean incomplete = true;
        	int boardSize = -1;
-	boardSize = Keyboard.readInt();
-	while (boardSize < 0 || boardSize > 4) {
-	    System.out.println("Invalid Option. Try Again!");
+	while (incomplete) {
 	    boardSize = Keyboard.readInt();
+	    if (boardSize < 0 || boardSize > 4) {
+		System.out.print("Invalid Option. Please try again: ");
+	    }
+	    else incomplete = false;
 	}
 
 	if (boardSize == 1) create_board(6,7);
@@ -121,35 +125,45 @@ public class Woo implements ConnectFour{
 
 	s = "What should Player 1 be?\n";
 	s += "\t1. a real person\n";
-	s += "\t2. an EasyComputer (random AI)\n";
-	s += "\t3. a MediumComputer (can block vertical wins)\n";
-	s += "\t4. a HardComputer (can block vertical and horizontal wins)\n";
-	s += "\t5. a TBM (can block vertical, horizontal, and diagonal wins)\n";
+	s += "\t2. an EasyComputer (random AI: No defense neither offense)\n";
+	s += "\t3. a MediumComputer (vertical defense, horizontal offense, vertical offense)\n";
+	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense\n";
+	s += "\t5. a TBM (Diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)\n";
 	s += "Selection: ";
 	System.out.print(s);
-	
+
+	incomplete = true;
 	int firstPlayer = -1;
-	firstPlayer = Keyboard.readInt();
-	while (firstPlayer < 0 || firstPlayer > 5) {
-	    System.out.print("Invalid Option. Please try Again: ");
+	while (incomplete) {
 	    firstPlayer = Keyboard.readInt();
+	    if (firstPlayer < 0 || firstPlayer > 5) {
+		System.out.print("Invalid Option. Please try Again: ");
+	    }
+	    else incomplete = false;
 	}
+
 
 	String name1 = "p1";
 	char char1 = '*';
 	if (firstPlayer == 1) {
 	    System.out.print("Player 1: Please enter your name: ");
-	    name1 = Keyboard.readWord();
-	    while (name1.equals("EasyComputer") || name1.equals("MediumComputer") || name1.equals("HardComputer") || name1.equals("TBM") ||
-		   name1.equals("EasyComputer2") || name1.equals("MediumComputer2") || name1.equals("HardComputer2") || name1.equals("TBM2")) {
-		System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
+	    incomplete = true;
+	    while (incomplete) {
 		name1 = Keyboard.readWord();
+		if (name1.equals("EasyComputer") || name1.equals("MediumComputer") || name1.equals("HardComputer") || name1.equals("TBM") ||
+		    name1.equals("EasyComputer2") || name1.equals("MediumComputer2") || name1.equals("HardComputer2") || name1.equals("TBM2")) {
+		    System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
+		}
+		else incomplete = false;
 	    }
 	    System.out.println("Please enter what char you want to use in the game. It cannot be C, E, M, H, T, -, or _ and can only be 1 letter.");
-	    char1 = Keyboard.readChar();
-	    while (char1 == 'C' || char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
-		System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
+	    incomplete = true;
+	    while (incomplete) {
 		char1 = Keyboard.readChar();
+		if (char1 == 'C' || char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
+		    System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
+		}
+		else incomplete = false;
 	    }
 	    p1 = new User(name1, char1);
 	}
@@ -168,43 +182,50 @@ public class Woo implements ConnectFour{
 
 	s = "What should Player 2 be?\n";
 	s += "\t1. a real person\n";
-	s += "\t2. an EasyComputer (random AI)\n";
-	s += "\t3. a MediumComputer (can block vertical wins)\n";
-	s += "\t4. a HardComputer (can block vertical and horizontal wins)\n";
-	s += "\t5. a TBM (can block vertical, horizontal, and diagonal wins)\n";
+	s += "\t2. an EasyComputer (random AI: No defense neither offense)\n";
+	s += "\t3. a MediumComputer (vertical defense, horizontal offense, vertical offense)\n";
+	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense\n";
+	s += "\t5. a TBM (Diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)\n";
 	s += "Selection: ";
 	System.out.print(s);
 
 	int secondPlayer = -1;
-	secondPlayer = Keyboard.readInt();
-	while (secondPlayer < 0 || secondPlayer > 5) {
-	    System.out.print("Invalid Option. Please try Again: ");
+	incomplete = true;
+	while (incomplete) {
 	    secondPlayer = Keyboard.readInt();
+	    if (secondPlayer < 0 || secondPlayer > 5) {
+		System.out.print("Invalid Option. Please try Again: ");
+	    }
+	    else incomplete = false;
 	}
 
 	String name2 = "p2";
 	char char2 = '#';
 	if (secondPlayer == 1) {
 	    System.out.print("Player 2: Please enter your name: ");
-	    name2 = Keyboard.readWord();
-	    while (name2.equals("EasyComputer") || name2.equals("MediumComputer") || name2.equals("HardComputer") || name2.equals("TBM") ||
-		   name2.equals("EasyComputer2") || name2.equals("MediumComputer2") || name2.equals("HardComputer2") || name2.equals("TBM2")) {
-		System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
+	    incomplete = true;
+	    while (incomplete) {
 		name2 = Keyboard.readWord();
-	    }
-	    while (name1.equals(name2)){
-		System.out.print("Your name cannot be the same as Player 1! Please try again: ");
-		name2 = Keyboard.readWord();
+		if (name2.equals("EasyComputer") || name2.equals("MediumComputer") || name2.equals("HardComputer") || name2.equals("TBM") ||
+		    name2.equals("EasyComputer2") || name2.equals("MediumComputer2") || name2.equals("HardComputer2") || name2.equals("TBM2")) {
+		    System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
+		}
+		else if (name1.equals(name2)){
+		    System.out.print("Your name cannot be the same as Player 1! Please try again: ");
+		}
+		else incomplete = false;
 	    }
 	    System.out.println("Please enter what char you want to use in the game. It cannot be C, E, M, H, T, -, or _ and can only be 1 letter.");
-	    char2 = Keyboard.readChar();
-	    while (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ){
-		System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
+	    incomplete = true;
+	    while (incomplete) {
 		char2 = Keyboard.readChar();
-	    }
-	    while (char2 == char1) {
-		System.out.print("Your token name cannot be the same as Player 1! Please Try again: ");
-		char2 = Keyboard.readChar();
+		if (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ) {
+		    System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
+		}
+		else if (char2 == char1) {
+		    System.out.print("Your token name cannot be the same as Player 1! Please Try again: ");
+		}
+		else incomplete = false;
 	    }
 	    p2 = new User(name2, char2);
 	}
@@ -227,9 +248,10 @@ public class Woo implements ConnectFour{
 	
 	p1.tokens = (numRows * numColumns) / 2;
 	p2.tokens = (numRows * numColumns) / 2;
+	System.out.println(printBoard());
 	while (!gameOver) {
 	    int col1 = -1;
-	    boolean incomplete = true;
+	    incomplete = true;
 	    while (incomplete) {
 		col1 = p1.pick_column(this, p2);
 		if(is_column_full(col1)){
@@ -243,15 +265,13 @@ public class Woo implements ConnectFour{
 	    if (firstPlayer != 1) {
 		System.out.println(p1 + " is currently thinking...");
 		try {
-		    Thread.sleep(1000 + (int) Math.random()*2000);
-		} catch(InterruptedException ex) {
+		    Thread.sleep(1000 + (int) Math.random()*3000);
+		}
+		catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
 	    }
 	    System.out.println(printBoard());
-	    /*	    System.out.println("DIAGNOSTIC");
-	    System.out.println("Player 1 last row #: " + p1._lastRow);
-	    System.out.println("Player 1 last column #: " + p1._lastColumn);*/
 	    check_winner(p1,p2);
 	    if (gameOver == true) break;
 	    int col2 = -1;
@@ -269,15 +289,13 @@ public class Woo implements ConnectFour{
 	    if (secondPlayer != 1) {
 		System.out.println(p2 + " is currently thinking...");
 		try {
-		    Thread.sleep(1000 + (int) Math.random()*2000);
-		} catch(InterruptedException ex) {
+		    Thread.sleep(1000 + (int) Math.random()*3000);
+		}
+		catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
 	    }
 	    System.out.println(printBoard());
-	    /*	    System.out.println("DIAGNOSTIC");
-	    System.out.println("Player 2 last row #: " + p2._lastRow);
-	    System.out.println("Player 2 last column #: " + p2._lastColumn);*/
 	    check_winner(p2,p1);
 	}
     }

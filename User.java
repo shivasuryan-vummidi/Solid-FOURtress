@@ -19,10 +19,10 @@ public class User extends Player{
 	int column = 0;
 	boolean incomplete = true;
 	while (incomplete) {
-	    System.out.println(name + ", please enter what column you want to drop your token.");
+	    System.out.print(name + ", please enter what column you want to drop your token: ");
 	    column = Keyboard.readInt();
 	    if (column < 0 || column >= w.numColumns) {
-		System.out.println("Out of Range or Invalid. Try again!");
+		System.out.print("Out of Range or Invalid. Please try again: ");
 	    }
 	    else {
 		incomplete = false;

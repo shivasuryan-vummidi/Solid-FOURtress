@@ -38,6 +38,8 @@ we decided to actually do AI after being enlightened and realized we can check t
 
 we decided to implement AI vs. AI. We had done so because it was a simple change. We just had to ask what player 1 should be.
 
+decided to implement offensive AI because code is almost the same as preexisting defensive AI.
+
 we changed ___ to ___ bc...
 
 LESSONS LEARNED
@@ -158,6 +160,12 @@ Adeebur Rahman :: complete AI overhaul.
 		  improved AI again
 		  updated README
 Shivasuryan Vummidi :: updated README
+==============================================================
+
+2017-01-20
+--------------------------------------------------------------
+Edwin Mok, Adeebur Rahman :: added comments
+Adeebur Rahman :: added offensive AI
 ==============================================================
 
 2017-01-dd
