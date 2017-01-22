@@ -150,7 +150,10 @@ public class Woo implements ConnectFour{
 	    incomplete = true;
 	    while (incomplete) {
 		name1 = Keyboard.readWord();
-		if (name1.equals("EasyComputer") || name1.equals("MediumComputer") || name1.equals("HardComputer") || name1.equals("TBM") ||
+		if (name1 == null) {
+		    System.out.print("\nInvalid name. Please try again: ");
+		}
+		else if (name1.equals("EasyComputer") || name1.equals("MediumComputer") || name1.equals("HardComputer") || name1.equals("TBM") ||
 		    name1.equals("EasyComputer2") || name1.equals("MediumComputer2") || name1.equals("HardComputer2") || name1.equals("TBM2")) {
 		    System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
 		}
@@ -160,7 +163,10 @@ public class Woo implements ConnectFour{
 	    incomplete = true;
 	    while (incomplete) {
 		char1 = Keyboard.readChar();
-		if (char1 == 'C' || char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
+		if (char1 == Character.MIN_VALUE) {
+		    System.out.print("Invalid Character. Please try again: ");
+		}
+		else if (char1 == 'C' || char1 == 'E' || char1 == 'M' || char1 == 'H' || char1 == 'T' || char1 == '-' || char1 == '_' ){
 		    System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
 		}
 		else incomplete = false;
@@ -206,7 +212,10 @@ public class Woo implements ConnectFour{
 	    incomplete = true;
 	    while (incomplete) {
 		name2 = Keyboard.readWord();
-		if (name2.equals("EasyComputer") || name2.equals("MediumComputer") || name2.equals("HardComputer") || name2.equals("TBM") ||
+		if (name2 == null) {
+		    System.out.print("\nInvalid name. Please try again: ");
+		}
+		else if (name2.equals("EasyComputer") || name2.equals("MediumComputer") || name2.equals("HardComputer") || name2.equals("TBM") ||
 		    name2.equals("EasyComputer2") || name2.equals("MediumComputer2") || name2.equals("HardComputer2") || name2.equals("TBM2")) {
 		    System.out.print("The name you have choosen is reserved for AI. Please Try Again: ");
 		}
@@ -219,7 +228,10 @@ public class Woo implements ConnectFour{
 	    incomplete = true;
 	    while (incomplete) {
 		char2 = Keyboard.readChar();
-		if (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ) {
+		if (char2 == Character.MIN_VALUE) {
+		    System.out.print("Invalid Character. Please try again: ");
+		}
+		else if (char2 == 'C' || char2 == 'E' || char2 == 'M' || char2 == 'H' || char2 == 'T' || char2 == '-' || char2 == '_' ) {
 		    System.out.print("You cannot use C, E, M, H, T, -, or _ as your token name! Please try again: ");
 		}
 		else if (char2 == char1) {
