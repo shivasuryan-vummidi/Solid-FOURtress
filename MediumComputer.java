@@ -52,7 +52,7 @@ public class MediumComputer extends EasyComputer {
 	String poss12 = "_" + "_" + String.valueOf(token_name) + "_"; //__*_
 	String poss13 = "_" + String.valueOf(token_name) + "_" + "_"; //_*__
 	String poss14 = String.valueOf(token_name) + "_" + "_" + "_"; //*___
-	for (int x = 0; x < w.numRows; x++) {
+	for (int x = w.numRows; x > 0; x--) {
 	    String Row = p.getRowString(w,x);
 	    String underRow = p.getRowString(w,x+1);
 	    if(hasSubString(Row,poss1)) {
@@ -79,6 +79,16 @@ public class MediumComputer extends EasyComputer {
 		    return missingSlot;
 		}
 	    }
+	}
+	for (int x = 0; x < w.numColumns;x++) {
+	    String Col = getColumnString(w,x);
+	    if (hasSubString(Col, poss1)) {
+		return x;
+	    }
+	}
+	for (int x = w.numRows; x > 0; x--) {
+	    String Row = p.getRowString(w,x);
+	    String underRow = p.getRowString(w,x+1);
 	    if(hasSubString(Row,poss5)) {
 		int[] missingSlots = new int[2];
 		missingSlots[0] = Row.indexOf(poss5);
@@ -196,7 +206,7 @@ public class MediumComputer extends EasyComputer {
 	}
 	for (int x = 0; x < w.numColumns;x++) {
 	    String Col = getColumnString(w,x);
-	    if (hasSubString(Col, poss1) || hasSubString(Col, poss5) || hasSubString(Col, poss11)) {
+	    if (hasSubString(Col, poss5) || hasSubString(Col, poss11)) {
 		return x;
 	    }
 	}

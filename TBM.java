@@ -101,8 +101,8 @@ public class TBM extends HardComputer {
 	String poss12 = "_" + "_" + String.valueOf(token_name) + "_"; //__*_
 	String poss13 = "_" + String.valueOf(token_name) + "_" + "_"; //_*__
 	String poss14 = String.valueOf(token_name) + "_" + "_" + "_"; //*___
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String rDiag = p.getRightDiagonalString(w,x,y);
 		String underRDiag = p.getRightDiagonalString(w,x,y+1);
 		//RIGHT DIAGONAL
@@ -132,8 +132,8 @@ public class TBM extends HardComputer {
 		}
 	    }
 	}
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String lDiag = p.getLeftDiagonalString(w,x,y);
 		String underLDiag = p.getLeftDiagonalString(w,x,y-1);
 		//LEFT DIAGONAL
@@ -163,7 +163,7 @@ public class TBM extends HardComputer {
 		}
 	    }
 	}
-	for (int x = 0; x < w.numRows; x++) {
+	for (int x = w.numRows; x > 0; x--) {
 	    String Row = p.getRowString(w,x);
 	    String underRow = p.getRowString(w,x+1);
 	    if(hasSubString(Row,poss1)) {
@@ -197,8 +197,8 @@ public class TBM extends HardComputer {
 		return x;
 	    }
 	}
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String rDiag = p.getRightDiagonalString(w,x,y);
 		String underRDiag = p.getRightDiagonalString(w,x,y+1);
 		//RIGHT DIAGONAL
@@ -270,8 +270,8 @@ public class TBM extends HardComputer {
 		}	    
 	    }
 	}
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String lDiag = p.getLeftDiagonalString(w,x,y);
 		String underLDiag = p.getLeftDiagonalString(w,x,y+1);
 		//LEFT DIAGONAL
@@ -343,7 +343,7 @@ public class TBM extends HardComputer {
 		}	    
 	    }
 	}
-	for (int x = 0; x < w.numRows; x++) {
+	for (int x = w.numRows; x > 0; x--) {
 	    String Row = p.getRowString(w,x);
 	    String underRow = p.getRowString(w,x+1);
 	    if(hasSubString(Row,poss5)) {
@@ -413,8 +413,8 @@ public class TBM extends HardComputer {
 		}
 	    }	    
 	}
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String rDiag = p.getRightDiagonalString(w,x,y);
 		String underRDiag = p.getRightDiagonalString(w,x,y+1);
 		//RIGHT DIAGONAL
@@ -468,8 +468,8 @@ public class TBM extends HardComputer {
 		}
 	    }
 	}
-	for (int x = 0; x < w.numColumns;x++) {
-	    for (int y = 0; y < w.numRows;y++) {
+	for (int x = w.numColumns; x > 0;x--) {
+	    for (int y = w.numRows; y > 0;y--) {
 		String lDiag = p.getLeftDiagonalString(w,x,y);
 		String underLDiag = p.getLeftDiagonalString(w,x,y+1);
 		//LEFT DIAGONAL
@@ -523,7 +523,7 @@ public class TBM extends HardComputer {
 		}		
 	    }
 	}
-	for (int x = 0; x < w.numRows; x++) {
+	for (int x = w.numRows; x > 0; x--) {
 	    String Row = p.getRowString(w,x);
 	    String underRow = p.getRowString(w,x+1);
 	    if(hasSubString(Row,poss11)) {
