@@ -18,8 +18,8 @@ public class User extends Player{
     public int pick_column(Woo w, Player p) {
 	int column = 0;
 	boolean incomplete = true;
+	System.out.print(name + ", please enter what column you want to drop your token: ");
 	while (incomplete) {
-	    System.out.print(name + ", please enter what column you want to drop your token: ");
 	    column = Keyboard.readInt();
 	    if (column < 0 || column >= w.numColumns) {
 		System.out.print("Out of Range or Invalid. Please try again: ");
