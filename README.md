@@ -23,7 +23,7 @@ However, if the board becomes full and nobody has yet to win, it is a draw.
 #####Launch Instructions:
 1. Clone this repository if you haven't already. `git clone git@github.com:shivasuryan-vummidi/Solid-FOURtress.git`
 2. Move to the Solid-FOURtress repository `cd Solid-FOURtress`
-3. Clear any preexisting class files if necessary. `rm *.java`
+3. Clear any preexisting class files if necessary. `rm *.class`
 4. Compile the Driver class Woo `javac Woo.java`
 5. Run the driver class `java Woo`
 6. You will be presented with a welcome screen and will be asked to pick a board size:
