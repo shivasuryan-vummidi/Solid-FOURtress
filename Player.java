@@ -1,9 +1,9 @@
 public abstract class Player {
 
-    protected int tokens;//number of tokens that a player get
+    protected int tokens;//number of tokens that a player gets
     protected String name;//the name of the Player
     protected char token_name;//the token that the Player is going to use
-    protected int _lastRow;//the last row that the Player has dropped the token in
+    protected int _lastRow;//the last row that the Player has dropped the token inx
     protected int _lastColumn;//the last column that the Player has dropped the token in
 
     //Any player can drop a token in desired column

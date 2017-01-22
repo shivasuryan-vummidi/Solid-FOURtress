@@ -2,12 +2,12 @@ import cs1.Keyboard;
 import java.io.*;
 public class Woo implements ConnectFour{
     
-    public char[][] _board;
-    private boolean gameOver;
-    public int numRows, numColumns;
-    private Player p1, p2;
-    private String winner;
-    PrintWriter writer;
+    public char[][] _board; //2D array representing the board
+    private boolean gameOver; //Boolean value representing the state of the game
+    public int numRows, numColumns; //represents the dimensions of the board
+    private Player p1, p2; //the two players of the game
+    private String winner; //Winning message used for game logging
+    private PrintWriter writer; //used for game logging
     
     //Creates board with rows # of rows and columns # of columns
     public void create_board(int rows, int columns) {
@@ -70,7 +70,7 @@ public class Woo implements ConnectFour{
 	set(row,column,p.token_name);
     }
 
-    //string representation of  the board
+    //string representation of the board
     public String printBoard(){
 	String s = "\n  ";
 	for (int x = 0; x < numColumns; x++ ) {

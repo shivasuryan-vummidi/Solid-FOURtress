@@ -168,9 +168,19 @@ Edwin Mok, Adeebur Rahman :: added comments
 Adeebur Rahman :: added offensive AI
 ==============================================================
 
-2017-01-dd
+2017-01-21
 --------------------------------------------------------------
-Edwin Mok :: <Thing member did.>
-Adeebur Rahman :: <Thing member did.>
+Adeebur Rahman :: Fixed null input (credit to Jeffrey Lin
+	       	  for pointing out the issue)
+Shivasuryan Vummidi :: uploaded new version of uml.pdf
+==============================================================
+
+2017-01-22
+--------------------------------------------------------------
+Adeebur Rahman :: improved AI order
+	       	  added game logging
+		  added more comments
+		  modified todo.txt
 Shivasuryan Vummidi :: <Thing member did.>
 ==============================================================
+

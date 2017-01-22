@@ -5,15 +5,65 @@ HW57 -- ...and Keeping It Pointed Up
 
 ============================================================
 WHAT WE MUST DO
-1. create interface ConnectFour with methods create_board() and check_winner()
-2. create driver class Woo
-3. modify driver class to implement create_board()
-4. create abstract superclass Player with methods drop_token() and is_win()
-5. create subclass User that has implementations of drop_token() and is_win()
-6. modify driver class Woo to create instances of User.
-7. modify driver class Woo to call on each instance of drop_token() and is_win()
-8. modify driver class Woo to import java.util.* and java.io.* to then create an InputStreamReader and a BufferedReader.
+ - create interface ConnectFour
+ - modify ConnectFour to add method header void create_board(int rows, int columns)
+ - modify ConnectFour to add method header String check_winner (Player p1, Player p2)
+ - modify ConnectFour to add method header boolean is_column_full(int column);
+ - modify ConnectFour to add method header void set(int row, int column, char x);
+ - modify ConnectFour to add method header void drop(int column, Player p);
+ - modify ConnectFour to add method header String printBoard();
+ - modify ConnectFour to add method header void newGame();
+ - create driver class Woo that implements ConnectFour
+ - modify Woo to add instance variables public int numRows, numColumns to represent board dimensions
+ - modify Woo to add instance variable public char[][] _board to represent the board
+ - modify Woo to add instance variable private boolean gameOver to represent the game status
+ - modify Woo to add instance variables private Player p1, p2 to represent the players of the game
+  - modify Woo to implement method void create_board(int rows, int columns)
+ - modify Woo to implement method String check_winner (Player p1, Player p2)
+ - modify Woo to implement method boolean is_column_full(int column);
+ - modify Woo to implement method void set(int row, int column, char x);
+ - modify Woo to implement method void drop(int column, Player p);
+ - modify Woo to implement method String printBoard();
+ - create abstract superclass Player
+ - modify Player to add instance variable protected String name to represent the player's name
+ - modify Player to add instance variable protected char token_name to represent the player's token
+ - modify Player to add instance variable protected int tokens to represent the player's number of tokens left
+ - modify Player to add instance variables protected int _lastRow, _lastColumn to represent the last row and column the player placed in.
+ - modify Player to add method header abstract int pick_column(Woo w,Player p)
+ - modify Player to add method String toString()
+ - modify Player to add method void drop_token(int column,Woo w)
+ - modify Player to add method Boolean is_win(Woo w)
+ - modify Player to add method boolean hasSubString(String str, String lookingFor)
+ - modify Player to add method String getRowString(Woo w, int row)
+ - modify Player to add method String getLastRowString(Woo w)
+ - modify Player to add method String getColumnString(Woo w, int row)
+ - modify Player to add method String getLastColumnString(Woo w)
+ - modify Player to add method String getRightDiagonalString(Woo w, int row)
+ - modify Player to add method String getLastRightDiagonalString(Woo w)
+ - modify Player to add method String getLeftDiagonalString(Woo w, int row)
+ - modify Player to add method String getLastLeftDiagonalString(Woo w) 
+ - create User class that extends Player
+ - modify User to include default constructor
+ - modify User to include overloaded constructor
+ - modify User to implement method int pick_column(Woo w,Player p)
+ - modify Woo to add method void newGame();
 ============================================================
-//NEW IDEAS - AI
-9. create subclass Computer that has implementations of drop_token() and is_win()
-10. modify subclass Computer to have a new method random_column() which serves as the AI for the class
+//EXTRAS
+ - create EasyComputer class that extends Player
+ - modify EasyComputer to include default constructor
+ - modify EasyComputer to include overloaded constructor
+ - modify EasyComputer to implement method int pick_column(Woo w,Player p)
+ - create MediumComputer class that extends EasyComputer
+ - modify MediumComputer to include default constructor
+ - modify MediumComputer to include overloaded constructor
+ - modify MediumComputer to implement method int pick_column(Woo w,Player p)
+ - create HardComputer class that extends MediumComputer
+ - modify HardComputer to include default constructor
+ - modify HardComputer to include overloaded constructor
+ - modify HardComputer to implement method int pick_column(Woo w,Player p)
+ - create TBM class that extends HardComputer
+ - modify TBM to include default constructor
+ - modify TBM to include overloaded constructor
+ - modify TBM to implement method int pick_column(Woo w,Player p)
+ - modify newGame() method in Woo to allow for game simulation;
+ - modify newGame() method in Woo to allow for game logging;
