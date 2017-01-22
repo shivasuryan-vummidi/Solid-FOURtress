@@ -4,6 +4,6 @@ public interface ConnectFour {
 
     void create_board(int rows, int columns);
     
-    void check_winner(Player p1, Player p2);
+    String check_winner(Player p1, Player p2);
 
 }

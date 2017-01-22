@@ -12,6 +12,9 @@
 \#*\#
 .\#*
 
+# ConnectFour lastGame.txt #
+lastGame.txt
+
 # OS X Files #
 .DS_Store
 ._*

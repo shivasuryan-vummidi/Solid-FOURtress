@@ -1,10 +1,13 @@
 import cs1.Keyboard;
+import java.io.*;
 public class Woo implements ConnectFour{
     
     public char[][] _board;
     private boolean gameOver;
     public int numRows, numColumns;
     private Player p1, p2;
+    private String winner;
+    PrintWriter writer;
     
     //Creates board with rows # of rows and columns # of columns
     public void create_board(int rows, int columns) {
@@ -19,18 +22,22 @@ public class Woo implements ConnectFour{
     }
     
     //calls is_win on the first input & checks for a draw
-    public void check_winner(Player p1, Player p2){
+    public String check_winner(Player p1, Player p2){
+	String retStr;
 	if(p1.is_win(this)){
-	    System.out.println("Player " + p1 + " has won!");
+	    retStr = "Player " + p1 + " has won!";
+	    winner = retStr;
 	    gameOver = true;
 	}
 	else if (p1.tokens == 0 && p2.tokens == 0) {
-	    System.out.println("Draw. Nobody Wins!");
+	    retStr = "Draw. Nobody Wins!";
+	    winner = retStr;
 	    gameOver = true;
 	}
 	else{
-	    System.out.println("Nobody has yet to win, continue playing.");
+	    retStr = "Nobody has yet to win, continue playing.";
 	}
+	return retStr;
     }
 
     //DEFAULT CONSTRUCTOR - Starts newgame
@@ -100,6 +107,8 @@ public class Woo implements ConnectFour{
     //starts a newgame
     public void newGame(){
 	String s = "";
+	String finalOutput = "";
+	String board, gameOutcome;
 	s = "Welcome to Connect Four!\n";
 	s += "\nChoose Your Board size: \n";
 	s += "\t1. 6 rows by 7 Columns\n";
@@ -284,7 +293,9 @@ public class Woo implements ConnectFour{
 		}
 	    }
 	    System.out.println(printBoard());
-	    check_winner(p1,p2);
+	    System.out.println(check_winner(p1,p2));
+	    finalOutput += p1 + "'s turn";
+	    finalOutput += printBoard();
 	    if (gameOver == true) break;
 	    int col2 = -1;
 	    incomplete = true;
@@ -308,8 +319,29 @@ public class Woo implements ConnectFour{
 		}
 	    }
 	    System.out.println(printBoard());
-	    check_winner(p2,p1);
+	    System.out.println(check_winner(p2,p1));
+	    finalOutput += p2 + "'s turn";
+	    finalOutput += printBoard();
 	}
+	Writer writer = null;
+
+	try {
+	    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("lastGame.txt"), "utf-8"));
+	    writer.write(finalOutput);
+	    writer.write(winner);
+	}
+	catch (IOException ex) {
+	    // report
+	}
+	finally {
+	    try {
+		writer.close();
+	    }
+	    catch (Exception ex) {
+		/*ignore*/
+	    }
+	}
+	System.out.println("The game output was printed out to lastGame.txt, if you would like to look at it.");
     }
 
     //////////////////////////////////////////////////////
