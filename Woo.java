@@ -127,7 +127,7 @@ public class Woo implements ConnectFour{
 	s += "\t1. a real person\n";
 	s += "\t2. an EasyComputer (random AI: No defense neither offense)\n";
 	s += "\t3. a MediumComputer (vertical defense, horizontal offense, vertical offense)\n";
-	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense\n";
+	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense)\n";
 	s += "\t5. a TBM (diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)\n";
 	s += "Selection: ";
 	System.out.print(s);
@@ -190,7 +190,7 @@ public class Woo implements ConnectFour{
 	s += "\t1. a real person\n";
 	s += "\t2. an EasyComputer (random AI: No defense neither offense)\n";
 	s += "\t3. a MediumComputer (vertical defense, horizontal offense, vertical offense)\n";
-	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense\n";
+	s += "\t4. a HardComputer (horizontal defense, vertical defense, horizontal offense, vertical offense)\n";
 	s += "\t5. a TBM (diagonal defense, horizontal defense, vertical defense, diagonal offense, horizontal offense, vertical offense)\n";
 	s += "Selection: ";
 	System.out.print(s);
