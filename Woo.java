@@ -298,7 +298,7 @@ public class Woo implements ConnectFour{
 	    }
 	    System.out.println(printBoard());
 	    System.out.println(check_winner(p1,p2));
-	    finalOutput += p1 + "'s turn";
+	    finalOutput += turn;
 	    finalOutput += printBoard();
 	    if (gameOver == true) break;
 	    int col2 = -1;
