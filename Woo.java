@@ -269,9 +269,13 @@ public class Woo implements ConnectFour{
 	
 	p1.tokens = (numRows * numColumns) / 2;
 	p2.tokens = (numRows * numColumns) / 2;
+	System.out.println("The Board");
 	System.out.println(printBoard());
+	String turn;
 	while (!gameOver) {
 	    int col1 = -1;
+	    turn = p1 + "'s turn";
+	    System.out.println(turn);
 	    incomplete = true;
 	    while (incomplete) {
 		col1 = p1.pick_column(this, p2);
@@ -298,6 +302,8 @@ public class Woo implements ConnectFour{
 	    finalOutput += printBoard();
 	    if (gameOver == true) break;
 	    int col2 = -1;
+	    turn = p2 + "'s turn";
+	    System.out.println(turn);
 	    incomplete = true;
 	    while (incomplete) {
 		col2 = p2.pick_column(this, p1);
@@ -320,7 +326,7 @@ public class Woo implements ConnectFour{
 	    }
 	    System.out.println(printBoard());
 	    System.out.println(check_winner(p2,p1));
-	    finalOutput += p2 + "'s turn";
+	    finalOutput += turn;
 	    finalOutput += printBoard();
 	}
 	Writer writer = null;
