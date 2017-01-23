@@ -17,16 +17,15 @@ wow we so BOSS bc we figured out how to do horizontal AI. We were able to do so 
 
 wow we so BOSS bc we figured out how to do diagonal AI. We were able to do so by checking the diagonal under to see if it the possible win can be blocked. We also had to make the diagonal obtaining functions have placeholders for slots that are "out of the board".
 
-wow we so BOSS bc...
-
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
+We don't have a way to end the program in a draw. Fixed with token count.
+
+We don't have a way to find out if a defensive move is possible. Fixed by checking lower row, diagonal.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+wow! oo! We can have instance variables Player p1 and Player p2, but have them be subclasses.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,8 +38,6 @@ we decided to actually do AI after being enlightened and realized we can check t
 we decided to implement AI vs. AI. We had done so because it was a simple change. We just had to ask what player 1 should be.
 
 decided to implement offensive AI because code is almost the same as preexisting defensive AI.
-
-we changed ___ to ___ bc...
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
