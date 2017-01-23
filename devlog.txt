@@ -177,10 +177,11 @@ Shivasuryan Vummidi :: uploaded new version of uml.pdf
 
 2017-01-22
 --------------------------------------------------------------
+Edwin Mok :: made and uploaded new flow.pdf
 Adeebur Rahman :: improved AI order
 	       	  added game logging
 		  added more comments
 		  modified todo.txt
-Shivasuryan Vummidi :: <Thing member did.>
+Shivasuryan Vummidi :: updated uml.pdf
 ==============================================================
 
